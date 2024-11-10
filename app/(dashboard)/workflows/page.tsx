@@ -1,4 +1,4 @@
-import CreateWorkFlowDialog from "@/actions/workflows/_components/CreateWorkFlowDialog";
+import CreateWorkFlowDialog from "./_components/CreateWorkflowDialog";
 import { getWorkflowsForUser } from "@/actions/workflows/getWorkflowsForUser";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
