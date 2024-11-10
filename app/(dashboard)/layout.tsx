@@ -4,7 +4,6 @@ import DesktopSidebar from "@/components/Sidebar";
 import { ModeToggle } from "@/components/ThemeModeToggle";
 import { Separator } from "@radix-ui/react-context-menu";
 import React from "react";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
