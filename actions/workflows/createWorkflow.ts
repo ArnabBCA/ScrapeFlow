@@ -24,7 +24,7 @@ export async function CreateWorkflow(form: CreateWorkflowSchemaType) {
     throw new Error("unauthenticated");
   }
 
-  const result = await prisma.workFlow.create({
+  const result = await prisma.workflow.create({
     data: {
       userId,
       status: WorkflowStatus.DRAFT,

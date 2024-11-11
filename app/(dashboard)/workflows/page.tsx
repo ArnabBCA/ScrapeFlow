@@ -5,6 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { AlertCircle, InboxIcon } from "lucide-react";
 import React, { Suspense } from "react";
 import WorkflowCard from "./_components/WorkflowCard";
+import { Workflow } from "@prisma/client";
 
 const page = () => {
   return (
@@ -68,7 +69,7 @@ async function UserWorkflows() {
 
   return (
     <div className="grid grid-cols-1 gap-4">
-      {workflows.map((workflow) => (
+      {workflows.map((workflow: Workflow) => (
         <WorkflowCard key={workflow.id} workflow={workflow} />
       ))}
     </div>

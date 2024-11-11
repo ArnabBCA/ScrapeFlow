@@ -4,7 +4,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { WorkflowStatus } from "@/types/workflow";
-import { WorkFlow } from "@prisma/client";
+import { Workflow } from "@prisma/client";
 import {
   FileTextIcon,
   MoreVerticalIcon,
@@ -30,7 +30,7 @@ const statusColors = {
   [WorkflowStatus.PUBLISHED]: "bg-primary",
 };
 
-const WorkflowCard = ({ workflow }: { workflow: WorkFlow }) => {
+const WorkflowCard = ({ workflow }: { workflow: Workflow }) => {
   const isDraft = workflow.status === WorkflowStatus.DRAFT;
   return (
     <Card className="border border-separate shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary/30">
