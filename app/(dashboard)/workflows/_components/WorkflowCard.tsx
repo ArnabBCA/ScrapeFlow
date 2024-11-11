@@ -50,7 +50,7 @@ const WorkflowCard = ({ workflow }: { workflow: Workflow }) => {
           </div>
           <div className="text-base font-bold text-muted-foreground flex items-center">
             <Link
-              href={`/workflows/${workflow.id}`}
+              href={`/workflow/editor/${workflow.id}`}
               className="flex items-center hover:underline"
             >
               {workflow.name}
