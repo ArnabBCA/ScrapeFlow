@@ -8,7 +8,7 @@ import { CoinsIcon, CopyIcon, GripVerticalIcon, TrashIcon } from "lucide-react";
 import React from "react";
 
 function NodeHeader({ taskType }: { taskType: TaskType; nodeId: string }) {
-  const task = TaskRegistry[taskType as keyof typeof TaskRegistry];
+  const task = TaskRegistry[taskType];
   return (
     <div className="flex items-center gap-2 p-2">
       <task.icon size={16} />

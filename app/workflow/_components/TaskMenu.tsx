@@ -42,7 +42,7 @@ export default function TaskMenu() {
 }
 
 function TaskMenuBtn({ taskType }: { taskType: TaskType }) {
-  const task = TaskRegistry[taskType as keyof typeof TaskRegistry];
+  const task = TaskRegistry[taskType];
 
   const onDragStart = (event: React.DragEvent, type: TaskType) => {
     event.dataTransfer.setData("application/reactflow", type);

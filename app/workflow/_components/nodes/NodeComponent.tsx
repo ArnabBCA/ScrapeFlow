@@ -17,7 +17,7 @@ import { memo } from "react";
 const DEV_MODE = process.env.NEXT_PUBLIC_DEV_MODE === "true";
 const NodeComponent = memo((props: NodeProps) => {
   const nodeData = props.data as AppNodeData;
-  const task = TaskRegistry[nodeData.type as keyof typeof TaskRegistry];
+  const task = TaskRegistry[nodeData.type];
   return (
     <NodeCard nodeId={props.id} isSelected={!!props.selected}>
       {DEV_MODE && <Badge>DEV: {props.id}</Badge>}
