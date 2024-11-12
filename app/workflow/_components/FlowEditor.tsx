@@ -73,7 +73,23 @@ function FlowEditor({ workflow }: { workflow: Workflow }) {
     [screenToFlowPosition, setNodes]
   );
 
-
+  const onConnect = useCallback(
+    (connection: Connection) => {
+      setEdges((eds) => addEdge({ ...connection, animated: true }, eds));
+      if (!connection.targetHandle) return;
+      // Remove input value if is present on connection
+      const node = nodes.find((nd) => nd.id === connection.target);
+      if (!node) return;
+      const nodeInputs = node.data.inputs;
+      updateNodeData(node.id, {
+        inputs: {
+          ...nodeInputs,
+          [connection.targetHandle]: "",
+        },
+      });
+    },
+    [setEdges, updateNodeData, nodes]
+  );
 
   return (
     <main className="h-full w-full">
@@ -90,6 +106,7 @@ function FlowEditor({ workflow }: { workflow: Workflow }) {
         fitView //remove if you want to fit view on load
         onDragOver={onDragOver}
         onDrop={onDrop}
+        onConnect={onConnect}
       >
         <Controls position="top-left" fitViewOptions={fitViewOptions} />
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />

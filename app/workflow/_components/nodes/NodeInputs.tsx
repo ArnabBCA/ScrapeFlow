@@ -1,3 +1,4 @@
+import { ColorForHandle } from "@/app/workflow/_components/nodes/common";
 import NodeParamField from "@/app/workflow/_components/nodes/NodeParamField";
 import { cn } from "@/lib/utils";
 import { TaskParam } from "@/types/task";
@@ -30,7 +31,8 @@ export function NodeInput({
           type="target"
           position={Position.Left}
           className={cn(
-            "!bg-muted-foreground !border-2 !border-background !-left-2 !w-4 !h-4"
+            "!bg-muted-foreground !border-2 !border-background !-left-2 !w-4 !h-4",
+            ColorForHandle[input.type]
           )}
         />
       )}

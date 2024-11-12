@@ -1,4 +1,6 @@
 "use client";
+
+import BrowserInstanceParam from "@/app/workflow/_components/nodes/param/BrowserInstanceParam";
 import StringParam from "@/app/workflow/_components/nodes/param/StringParam";
 import { Input } from "@/components/ui/input";
 import { AppNode } from "@/types/appNode";
@@ -39,6 +41,14 @@ function NodeParamField({
           value={value}
           updateNodeParamValue={updateNodeParamValue}
           disabled={disabled}
+        />
+      );
+    case TaskParamType.BROWSER_INSTANCE:
+      return (
+        <BrowserInstanceParam
+          param={param}
+          value={""}
+          updateNodeParamValue={updateNodeParamValue}
         />
       );
     default:
