@@ -6,6 +6,7 @@ import { ReactFlowProvider } from "@xyflow/react";
 import FlowEditor from "@/app/workflow/_components/FlowEditor";
 import Topbar from "@/app/workflow/_components/topbar/Topbar";
 import { WorkflowStatus } from "@/types/workflow";
+import TaskMenu from "./TaskMenu";
 
 function Editor({ workflow }: { workflow: Workflow }) {
   return (
@@ -18,6 +19,7 @@ function Editor({ workflow }: { workflow: Workflow }) {
           isPublished={workflow.status === WorkflowStatus.PUBLISHED}
         />
         <section className="flex h-full overflow-auto">
+          <TaskMenu />
           <FlowEditor workflow={workflow} />
         </section>
       </div>
