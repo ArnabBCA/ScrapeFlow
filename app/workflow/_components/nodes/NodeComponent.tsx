@@ -28,9 +28,16 @@ const NodeComponent = memo((props: NodeProps) => {
         ))}
       </NodeInputs>
       <NodeOutputs>
-        {task.outputs.map((output) => (
-          <NodeOutput key={output.name} output={output} />
-        ))}
+        {task.outputs.map((output, i) => {
+          const isLastElement = i === task.outputs.length - 1; //for styling bottom rounded corners
+          return (
+            <NodeOutput
+              key={output.name}
+              output={output}
+              isLastElement={isLastElement}
+            />
+          );
+        })}
       </NodeOutputs>
     </NodeCard>
   );

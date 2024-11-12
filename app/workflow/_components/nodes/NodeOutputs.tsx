@@ -10,9 +10,20 @@ export function NodeOutputs({ children }: { children: ReactNode }) {
   return <div className="flex flex-col divide-y gap-1">{children}</div>;
 }
 
-export function NodeOutput({ output }: { output: TaskParam }) {
+export function NodeOutput({
+  output,
+  isLastElement,
+}: {
+  output: TaskParam;
+  isLastElement?: boolean;
+}) {
   return (
-    <div className="flex justify-end relative p-3 bg-secondary rounded-b-md">
+    <div
+      className={cn(
+        "flex justify-end relative p-3 bg-secondary",
+        isLastElement ? "rounded-b-md" : ""
+      )}
+    >
       <p className="text-xs text-muted-foreground">{output.name}</p>
       <Handle
         id={output.name}
@@ -26,3 +37,4 @@ export function NodeOutput({ output }: { output: TaskParam }) {
     </div>
   );
 }
+
