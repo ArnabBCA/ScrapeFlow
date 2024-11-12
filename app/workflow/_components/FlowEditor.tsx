@@ -81,11 +81,16 @@ function FlowEditor({ workflow }: { workflow: Workflow }) {
       const node = nodes.find((nd) => nd.id === connection.target);
       if (!node) return;
       const nodeInputs = node.data.inputs;
-      updateNodeData(node.id, {
+      /*updateNodeData(node.id, {
         inputs: {
           ...nodeInputs,
           [connection.targetHandle]: "",
         },
+      });*/
+
+      delete nodeInputs[connection.targetHandle];
+      updateNodeData(node.id, {
+        inputs: nodeInputs,
       });
     },
     [setEdges, updateNodeData, nodes]
