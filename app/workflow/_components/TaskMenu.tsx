@@ -33,6 +33,7 @@ export default function TaskMenu() {
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuBtn taskType={TaskType.PAGE_TO_HTML} />
+            <TaskMenuBtn taskType={TaskType.EXTRACT_TEXT_FROM_ELEMENT} />
           </AccordionContent>
         </AccordionItem>
       </Accordion>
@@ -42,7 +43,6 @@ export default function TaskMenu() {
 
 function TaskMenuBtn({ taskType }: { taskType: TaskType }) {
   const task = TaskRegistry[taskType as keyof typeof TaskRegistry];
-
 
   const onDragStart = (event: React.DragEvent, type: TaskType) => {
     event.dataTransfer.setData("application/reactflow", type);
