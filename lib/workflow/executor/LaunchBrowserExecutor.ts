@@ -18,7 +18,10 @@ export async function LaunchBrowserExecutor(
       );*/
       const chromium = (await import("@sparticuz/chromium")).default;
       const puppeteerCore = (await import("puppeteer-core")).default;
-      const executablePath = await chromium.executablePath();
+      const executablePath = await chromium.executablePath(
+        "/opt/nodejs/node_modules/@sparticuz/chromium/bin/chromium.br"
+      );
+      console.log("Executable Path:", executablePath);
       browser = await puppeteerCore.launch({
         args: chromium.args,
         executablePath,
