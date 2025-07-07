@@ -13,7 +13,7 @@ import {
 import { ExecutionPhase } from "@prisma/client";
 import { TaskRegistry } from "./task/registry";
 import { ExecutorRegistry } from "./executor/Registry";
-import { Browser, Page } from "puppeteer";
+import { Browser, Page } from "puppeteer-core";
 import { Edge } from "@xyflow/react";
 import { createLogCollector } from "../log";
 
