@@ -16,9 +16,9 @@ import {
 import React, { useCallback, useEffect } from "react";
 import "@xyflow/react/dist/style.css";
 import { AppNode, TaskType } from "@/lib/types";
-import { createFlowNode } from "@/lib/workflow/CreateFlowNode";
 import NodeComponent from "./nodes/NodeComponent";
 import DeletableEdge from "./edges/DeletableEdge";
+import { createFlowNode } from "@/lib/workflow/CreateFlowNode";
 import { TaskRegistry } from "@/lib/workflow/task/Registry";
 
 const nodeTypes = {
