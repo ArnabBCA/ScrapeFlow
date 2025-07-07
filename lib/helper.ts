@@ -41,7 +41,7 @@ export function calculateWorkflowCost(nodes: AppNode[]) {
 }
 
 export function getAppUrl(path: string): string {
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
   return `${appUrl}/${path}`;
 }
