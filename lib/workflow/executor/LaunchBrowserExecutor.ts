@@ -1,10 +1,9 @@
 import { ExecutionEnviornment } from "@/lib/types";
 import { LaunchBrowserTask } from "../task/LaunchBrowser";
-//import chromium from "@sparticuz/chromium-min";
-import puppeteer, { type Browser } from "puppeteer";
-import puppeteerCore, { type Browser as BrowserCore } from "puppeteer-core";
+import chromium from "@sparticuz/chromium-min";
+import puppeteer from "puppeteer";
+import puppeteerCore from "puppeteer-core";
 
-export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 export async function LaunchBrowserExecutor(
@@ -15,12 +14,9 @@ export async function LaunchBrowserExecutor(
 
     let browser;
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
-      /*const executablePath = await chromium.executablePath(
+      const executablePath = await chromium.executablePath(
         "https://github.com/Sparticuz/chromium/releases/download/v137.0.1/chromium-v137.0.1-pack.x64.tar"
-      );*/
-      const chromiumModule = await import("@sparticuz/chromium");
-      const chromium = chromiumModule.default || chromiumModule;
-      const executablePath = await chromium.executablePath();
+      );
       browser = await puppeteerCore.launch({
         args: chromium.args,
         executablePath,
