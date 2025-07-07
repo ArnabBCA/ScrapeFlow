@@ -5,6 +5,7 @@ import puppeteerCore from "puppeteer-core";
 import path from "path";
 import fs from "fs";
 export const maxDuration = 60;
+import chromium from "@sparticuz/chromium";
 
 export async function LaunchBrowserExecutor(
   enviornment: ExecutionEnviornment<typeof LaunchBrowserTask>
@@ -15,7 +16,7 @@ export async function LaunchBrowserExecutor(
     let browser;
 
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
-      const chromium = (await import("@sparticuz/chromium")).default;
+      //const chromium = require("@sparticuz/chromium");
       const filePath = path.join(
         process.cwd(),
         "node_modules/@sparticuz/chromium/",
