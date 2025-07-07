@@ -3,8 +3,8 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AppNode, TaskType } from "@/lib/types";
-import { createFlowNode } from "@/lib/workflow/CreateFlowNode";
-import { TaskRegistry } from "@/lib/workflow/task/Registry";
+import { createFlowNode } from "@/lib/workflow/createFlowNode";
+import { TaskRegistry } from "@/lib/workflow/task/registry";
 import { useReactFlow } from "@xyflow/react";
 import { Coins, CopyIcon, GripVerticalIcon, TrashIcon } from "lucide-react";
 import React, { Fragment } from "react";

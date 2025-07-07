@@ -8,7 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { TaskType } from "@/lib/types";
-import { TaskRegistry } from "@/lib/workflow/task/Registry";
+import { TaskRegistry } from "@/lib/workflow/task/registry";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CoinsIcon } from "lucide-react";

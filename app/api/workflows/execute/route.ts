@@ -6,7 +6,7 @@ import {
   WorkflowExecutionTrigger,
 } from "@/lib/types";
 import { executeWorkflow } from "@/lib/workflow/executeWorkflow";
-import { TaskRegistry } from "@/lib/workflow/task/Registry";
+import { TaskRegistry } from "@/lib/workflow/task/registry";
 import { timingSafeEqual } from "crypto";
 import parser from "cron-parser";
 

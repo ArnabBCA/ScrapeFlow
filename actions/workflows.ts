@@ -3,7 +3,7 @@
 import { calculateWorkflowCost } from "@/lib/helper";
 import prisma from "@/lib/prisma";
 import { AppNode, TaskType, WorkflowStatus } from "@/lib/types";
-import { createFlowNode } from "@/lib/workflow/CreateFlowNode";
+import { createFlowNode } from "@/lib/workflow/createFlowNode";
 import { flowToExecutionPlan } from "@/lib/workflow/executionPlan";
 import {
   createWorkflowShema,

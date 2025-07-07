@@ -10,7 +10,7 @@ import {
 } from "@/lib/types";
 import { executeWorkflow } from "@/lib/workflow/executeWorkflow";
 import { flowToExecutionPlan } from "@/lib/workflow/executionPlan";
-import { TaskRegistry } from "@/lib/workflow/task/Registry";
+import { TaskRegistry } from "@/lib/workflow/task/registry";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 

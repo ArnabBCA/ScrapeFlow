@@ -6,7 +6,7 @@ import {
   WorkflowExecutionPlan,
   WorkflowExecutionPlanPhase,
 } from "../types";
-import { TaskRegistry } from "./task/Registry";
+import { TaskRegistry } from "./task/registry";
 
 type flowToExecutionPlan = {
   executionPlan?: WorkflowExecutionPlan;

@@ -11,7 +11,7 @@ import {
   WorkflowExecutionStatus,
 } from "../types";
 import { ExecutionPhase } from "@prisma/client";
-import { TaskRegistry } from "./task/Registry";
+import { TaskRegistry } from "./task/registry";
 import { ExecutorRegistry } from "./executor/Registry";
 import { Browser, Page } from "puppeteer";
 import { Edge } from "@xyflow/react";

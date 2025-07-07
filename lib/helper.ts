@@ -1,7 +1,7 @@
 import { ExecutionPhase } from "@prisma/client";
 import { endOfMonth, intervalToDuration, startOfMonth } from "date-fns";
 import { AppNode, Period } from "./types";
-import { TaskRegistry } from "./workflow/task/Registry";
+import { TaskRegistry } from "./workflow/task/registry";
 
 export function waitFor(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

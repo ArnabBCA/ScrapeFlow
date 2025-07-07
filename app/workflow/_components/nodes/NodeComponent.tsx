@@ -3,7 +3,7 @@ import { memo } from "react";
 import NodeCard from "./NodeCard";
 import NodeHeader from "./NodeHeader";
 import { AppNodeData } from "@/lib/types";
-import { TaskRegistry } from "@/lib/workflow/task/Registry";
+import { TaskRegistry } from "@/lib/workflow/task/registry";
 import NodeInput from "./NodeInput";
 import NodeOutput from "./params/NodeOutput";
 import NodeIO from "./NodeIO";
