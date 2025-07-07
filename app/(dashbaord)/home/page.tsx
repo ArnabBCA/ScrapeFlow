@@ -13,14 +13,11 @@ import StatsCard from "./_components/StatsCard";
 import ExecutionStatusChart from "./_components/ExecutionStatusChart";
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
-type PageProps = {
-  searchParams?: {
-    month?: string;
-    year?: string;
-  };
-};
-
-function Homepage({ searchParams }: PageProps) {
+function Homepage({
+  searchParams,
+}: {
+  searchParams?: { month?: string; year?: string };
+}) {
   const currDate = new Date();
   const { month, year } = searchParams || {};
 
