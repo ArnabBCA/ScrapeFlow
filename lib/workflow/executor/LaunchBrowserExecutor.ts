@@ -8,7 +8,7 @@ import fs from "fs";
 export const maxDuration = 60;
 const filePath = path.join(
   process.cwd(),
-  ".next/server",
+  "node_modules",
   "chromium-v137.0.1-pack.x64.tar"
 );
 
