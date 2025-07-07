@@ -15,10 +15,10 @@ export async function LaunchBrowserExecutor(
     let browser;
 
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
-      const chromium = (await import("@sparticuz/chromium")).default; 
+      const chromium = (await import("@sparticuz/chromium")).default;
       const filePath = path.join(
         process.cwd(),
-        "node_modules/@sparticuz/chromium/bin",
+        "node_modules/@sparticuz/chromium/",
         "chromium-v137.0.1-pack.x64.tar"
       );
       if (!fs.existsSync(filePath)) {
