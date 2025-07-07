@@ -1,4 +1,3 @@
-"use server";
 import { getAppUrl } from "@/lib/helper";
 import prisma from "@/lib/prisma";
 import { WorkflowStatus } from "@/lib/types";
@@ -20,33 +19,26 @@ export async function GET(request: NextRequest) {
     },
   });
   for (const workflow of workflows) {
-    const workflowId = workflow.id;
-    const triggerApiUrl = getAppUrl(
-      `api/workflows/execute?workflowId=${workflowId}`
-    );
-
-    if (!process.env.API_SECRET) {
-      console.error("API_SECRET is not defined");
-      return;
-    }
-
-    // Non-blocking, fire-and-forget
-    fetch(triggerApiUrl, {
-      headers: {
-        Authorization: `Bearer ${process.env.API_SECRET}`,
-      },
-      cache: "no-store",
-    }).catch((error) => {
-      console.error(
-        "Error triggering workflow with id",
-        workflowId,
-        ":",
-        error?.message || error
-      );
-    });
+    triggerWorkflow(workflow.id);
   }
-  return new Response(JSON.stringify({ workflowsToRun: workflows.length }), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
+  return Response.json({ workflowsToRun: workflows.length }, { status: 200 });
+}
+
+function triggerWorkflow(wofkflowId: string) {
+  const triggerApiUrl = getAppUrl(
+    `api/workflows/execute?workflowId=${wofkflowId}`
+  );
+  fetch(triggerApiUrl, {
+    headers: {
+      Authorization: `Bearer ${process.env.API_SECRET!}`,
+    },
+    cache: "no-store",
+  }).catch((error: any) => {
+    console.error(
+      "Error triggering workflow with id",
+      wofkflowId,
+      ":error->",
+      error.message
+    );
   });
 }
