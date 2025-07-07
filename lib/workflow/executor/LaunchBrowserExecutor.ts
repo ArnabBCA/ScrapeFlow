@@ -19,14 +19,11 @@ export async function LaunchBrowserExecutor(
     const websiteUrl = enviornment.getInput("Website Url");
 
     let browser;
+
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
-      /*const executablePath = await chromium.executablePath(
-        "https://github.com/Sparticuz/chromium/releases/download/v137.0.1/chromium-v137.0.1-pack.x64.tar"
-      );*/
       if (!fs.existsSync(filePath)) {
         const dirPath = path.dirname(filePath);
         let errorMessage = `❌ File not found at: ${filePath}`;
-
         if (fs.existsSync(dirPath)) {
           const files = fs.readdirSync(dirPath);
           if (files.length === 0) {
@@ -38,6 +35,20 @@ export async function LaunchBrowserExecutor(
           }
         } else {
           errorMessage += `\n❗ Directory does not exist: ${dirPath}`;
+          // 🔍 Check parent directory
+          const parentDir = path.dirname(dirPath);
+          if (fs.existsSync(parentDir)) {
+            const parentFiles = fs.readdirSync(parentDir);
+            if (parentFiles.length === 0) {
+              errorMessage += `\n📁 Parent directory "${parentDir}" is empty.`;
+            } else {
+              errorMessage += `\n📁 Files in parent directory "${parentDir}":\n - ${parentFiles.join(
+                "\n - "
+              )}`;
+            }
+          } else {
+            errorMessage += `\n❗ Parent directory also does not exist: ${parentDir}`;
+          }
         }
         enviornment.log.error(errorMessage);
         return false;
