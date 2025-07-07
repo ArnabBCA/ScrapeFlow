@@ -1,9 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      config.externals.push("@sparticuz/chromium", "puppeteer-core");
-    }
+  experimental: {
+    serverComponentsExternalPackages: ["@sparticuz/chromium", "puppeteer-core"],
+  },
+  webpack(config) {
+    config.externalsPresets = { node: true };
+    config.externals = {
+      ...config.externals,
+      "@sparticuz/chromium": "commonjs2 @sparticuz/chromium",
+    };
     return config;
   },
 };
