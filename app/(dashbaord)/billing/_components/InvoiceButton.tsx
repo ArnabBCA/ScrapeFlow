@@ -1,4 +1,4 @@
-"use client";
+/*"use client";
 import { downloadInvoice } from "@/actions/billings";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
@@ -33,4 +33,4 @@ function InvoiceButton({ id }: { id: string }) {
   );
 }
 
-export default InvoiceButton;
+export default InvoiceButton;*/
