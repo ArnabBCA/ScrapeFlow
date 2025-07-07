@@ -90,9 +90,7 @@ async function TransactionHistory() {
           <ArrowLeftRightIcon className="h-6 w-6 text-primary" />
           Transaction History
         </CardTitle>
-        <CardDescription>
-          View your transaction history and download invoices
-        </CardDescription>
+        <CardDescription>View your transaction history</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {purchases.length === 0 && (
