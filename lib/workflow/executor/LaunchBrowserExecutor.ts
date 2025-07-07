@@ -17,7 +17,7 @@ export async function LaunchBrowserExecutor(
 
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
       //const chromium = require("@sparticuz/chromium");
-      const filePath = path.join(
+      /*const filePath = path.join(
         process.cwd(),
         "node_modules/@sparticuz/chromium/bin",
         "chromium-v137.0.1-pack.x64.tar"
@@ -53,8 +53,8 @@ export async function LaunchBrowserExecutor(
         }
         enviornment.log.error(errorMessage);
         return false;
-      }
-      const executablePath = await chromium.executablePath(filePath);
+      }*/
+      const executablePath = await chromium.executablePath();
       browser = await puppeteerCore.launch({
         args: chromium.args,
         executablePath,
