@@ -2,16 +2,12 @@ import fs from "fs";
 import path from "path";
 import axios from "axios";
 import * as tar from "tar";
-import { fileURLToPath } from "url";
-
-// Resolve __dirname in ESModules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const VERSION = "v137.0.1";
 const FILENAME = `chromium-${VERSION}-pack.x64.tar`;
 const DOWNLOAD_URL = `https://github.com/Sparticuz/chromium/releases/download/${VERSION}/${FILENAME}`;
-const OUTPUT_DIR = path.join(process.cwd(), ".vercel/output/static/chromium");
+const OUTPUT_DIR = path.resolve(".next/server/.chromium");
+
 const TAR_PATH = path.join(OUTPUT_DIR, FILENAME);
 
 async function downloadFile(url, dest) {
@@ -44,13 +40,7 @@ async function extractTar(filePath, dest) {
 
 async function main() {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-
-  // Optional: skip download if already exists
-  if (fs.existsSync(path.join(OUTPUT_DIR, "chrome"))) {
-    console.log("✅ Chromium already extracted, skipping download.");
-    return;
-  }
-
+  
   console.log(`🔽 Downloading Chromium from: ${DOWNLOAD_URL}`);
   await downloadFile(DOWNLOAD_URL, TAR_PATH);
 

@@ -8,7 +8,7 @@ import path from "path";
 export const maxDuration = 60;
 const executablePath = path.join(
   process.cwd(),
-  ".vercel/output/static/chromium",
+  ".next/server/.chromium",
   "chromium"
 );
 

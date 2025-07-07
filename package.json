@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "build": "prisma generate && next build && npm run download-chromium",
     "download-chromium": "node scripts/download-chromium.js",
-    "build": "prisma generate && npm run download-chromium && next build",
     "start": "next start",
     "lint": "next lint"
   },
