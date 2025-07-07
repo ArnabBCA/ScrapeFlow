@@ -13,13 +13,16 @@ import StatsCard from "./_components/StatsCard";
 import ExecutionStatusChart from "./_components/ExecutionStatusChart";
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
-function Homepage({
-  searchParams,
-}: {
-  searchParams: { month?: string; year?: string };
-}) {
+type PageProps = {
+  searchParams?: {
+    month?: string;
+    year?: string;
+  };
+};
+
+function Homepage({ searchParams }: PageProps) {
   const currDate = new Date();
-  const { month, year } = searchParams;
+  const { month, year } = searchParams || {};
 
   const period: Period = {
     month: month ? parseInt(month) : currDate.getMonth(),
