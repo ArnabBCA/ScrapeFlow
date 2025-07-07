@@ -24,7 +24,22 @@ export async function LaunchBrowserExecutor(
         "https://github.com/Sparticuz/chromium/releases/download/v137.0.1/chromium-v137.0.1-pack.x64.tar"
       );*/
       if (!fs.existsSync(filePath)) {
-        enviornment.log.error(`File not found at ${filePath}`);
+        const dirPath = path.dirname(filePath);
+        let errorMessage = `❌ File not found at: ${filePath}`;
+
+        if (fs.existsSync(dirPath)) {
+          const files = fs.readdirSync(dirPath);
+          if (files.length === 0) {
+            errorMessage += `\n📁 Directory "${dirPath}" is empty.`;
+          } else {
+            errorMessage += `\n📁 Files in directory "${dirPath}":\n - ${files.join(
+              "\n - "
+            )}`;
+          }
+        } else {
+          errorMessage += `\n❗ Directory does not exist: ${dirPath}`;
+        }
+        enviornment.log.error(errorMessage);
         return false;
       }
       const executablePath = await chromium.executablePath(filePath);
