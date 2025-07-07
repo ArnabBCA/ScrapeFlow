@@ -22,24 +22,34 @@ export async function GET(request: NextRequest) {
   for (const workflow of workflows) {
     triggerWorkflow(workflow.id);
   }
-  return Response.json({ workflowsToRun: workflows.length }, { status: 200 });
+  return new Response(JSON.stringify({ workflowsToRun: workflows.length }), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
 }
 
-function triggerWorkflow(wofkflowId: string) {
+function triggerWorkflow(workflowId: string) {
   const triggerApiUrl = getAppUrl(
-    `api/workflows/execute?workflowId=${wofkflowId}`
+    `api/workflows/execute?workflowId=${workflowId}`
   );
+
+  if (!process.env.API_SECRET) {
+    console.error("API_SECRET is not defined");
+    return;
+  }
+
+  // Non-blocking, fire-and-forget
   fetch(triggerApiUrl, {
     headers: {
-      Authorization: `Bearer ${process.env.API_SECRET!}`,
+      Authorization: `Bearer ${process.env.API_SECRET}`,
     },
     cache: "no-store",
-  }).catch((error: any) => {
+  }).catch((error) => {
     console.error(
       "Error triggering workflow with id",
-      wofkflowId,
-      ":error->",
-      error.message
+      workflowId,
+      ":",
+      error?.message || error
     );
   });
 }
