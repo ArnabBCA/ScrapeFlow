@@ -1,16 +1,10 @@
 import { ExecutionEnviornment } from "@/lib/types";
 import { LaunchBrowserTask } from "../task/LaunchBrowser";
-import chromium from "@sparticuz/chromium-min";
 import puppeteer from "puppeteer";
 import puppeteerCore from "puppeteer-core";
 import path from "path";
 import fs from "fs";
 export const maxDuration = 60;
-const filePath = path.join(
-  process.cwd(),
-  "node_modules",
-  "chromium-v137.0.1-pack.x64.tar"
-);
 
 export async function LaunchBrowserExecutor(
   enviornment: ExecutionEnviornment<typeof LaunchBrowserTask>
@@ -21,6 +15,12 @@ export async function LaunchBrowserExecutor(
     let browser;
 
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
+      const chromium = (await import("@sparticuz/chromium")).default; 
+      const filePath = path.join(
+        process.cwd(),
+        "node_modules/@sparticuz/chromium/bin",
+        "chromium-v137.0.1-pack.x64.tar"
+      );
       if (!fs.existsSync(filePath)) {
         const dirPath = path.dirname(filePath);
         let errorMessage = `❌ File not found at: ${filePath}`;
