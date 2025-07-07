@@ -1,13 +1,11 @@
 import fs from "fs";
 import path from "path";
 import axios from "axios";
-import * as tar from "tar";
 
 const VERSION = "v137.0.1";
 const FILENAME = `chromium-${VERSION}-pack.x64.tar`;
 const DOWNLOAD_URL = `https://github.com/Sparticuz/chromium/releases/download/${VERSION}/${FILENAME}`;
 const OUTPUT_DIR = path.resolve(".next/server/.chromium");
-
 const TAR_PATH = path.join(OUTPUT_DIR, FILENAME);
 
 async function downloadFile(url, dest) {
@@ -29,34 +27,20 @@ async function downloadFile(url, dest) {
   });
 }
 
-async function extractTar(filePath, dest) {
-  console.log("📦 Extracting archive...");
-  await tar.x({
-    file: filePath,
-    cwd: dest,
-  });
-  console.log("✅ Extraction done.");
-}
-
 async function main() {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-  
-  console.log(`🔽 Downloading Chromium from: ${DOWNLOAD_URL}`);
+
+  console.log(`🔽 Downloading Chromium tarball from: ${DOWNLOAD_URL}`);
   await downloadFile(DOWNLOAD_URL, TAR_PATH);
 
-  // Optional: log file size
   if (fs.existsSync(TAR_PATH)) {
     const { size } = fs.statSync(TAR_PATH);
-    console.log(`📁 Downloaded size: ${(size / 1024 / 1024).toFixed(2)} MB`);
+    console.log(`📁 File saved at: ${TAR_PATH}`);
+    console.log(`📦 Size: ${(size / 1024 / 1024).toFixed(2)} MB`);
   }
-
-  await extractTar(TAR_PATH, OUTPUT_DIR);
-
-  fs.unlinkSync(TAR_PATH);
-  console.log("✅ Chromium is ready at:", OUTPUT_DIR);
 }
 
 main().catch((err) => {
-  console.error("❌ Failed to download or extract Chromium:", err);
+  console.error("❌ Failed to download Chromium tarball:", err);
   process.exit(1);
 });

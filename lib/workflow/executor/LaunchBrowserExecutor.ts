@@ -9,7 +9,7 @@ export const maxDuration = 60;
 const executablePath = path.join(
   process.cwd(),
   ".next/server/.chromium",
-  "chromium"
+  "chromium-v137.0.1-pack.x64.tar"
 );
 
 export async function LaunchBrowserExecutor(
