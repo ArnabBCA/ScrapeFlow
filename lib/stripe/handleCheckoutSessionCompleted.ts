@@ -1,4 +1,4 @@
-import "server-only";
+/*import "server-only";
 import Stripe from "stripe";
 import { getCreditsPack, PackId } from "../billing";
 import prisma from "../prisma";
@@ -48,4 +48,4 @@ export async function handleCheckoutSessionCompleted(
       currency: event.currency!,
     },
   });
-}
+}*/

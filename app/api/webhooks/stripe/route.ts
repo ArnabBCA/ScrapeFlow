@@ -1,5 +1,4 @@
-import { handleCheckoutSessionCompleted } from "@/lib/stripe/handleCheckoutSessionCompleted";
-import { stripe } from "@/lib/stripe/stripe";
+/*import { handleCheckoutSessionCompleted } from "@/lib/stripe/handleCheckoutSessionCompleted";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -29,4 +28,4 @@ export async function POST(request: Request) {
     console.error("Stripe webhook error", error);
     return new NextResponse("webhook error", { status: 400 });
   }
-}
+}*/
