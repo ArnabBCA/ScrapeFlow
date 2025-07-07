@@ -4,9 +4,9 @@ import chromium from "@sparticuz/chromium-min";
 import puppeteer from "puppeteer";
 import puppeteerCore from "puppeteer-core";
 import path from "path";
-
+import fs from "fs";
 export const maxDuration = 60;
-const executablePath = path.join(
+const filePath = path.join(
   process.cwd(),
   ".next/server/.chromium",
   "chromium-v137.0.1-pack.x64.tar"
@@ -23,6 +23,11 @@ export async function LaunchBrowserExecutor(
       /*const executablePath = await chromium.executablePath(
         "https://github.com/Sparticuz/chromium/releases/download/v137.0.1/chromium-v137.0.1-pack.x64.tar"
       );*/
+      if (!fs.existsSync(filePath)) {
+        enviornment.log.error(`File not found at ${filePath}`);
+        return false;
+      }
+      const executablePath = await chromium.executablePath(filePath);
       browser = await puppeteerCore.launch({
         args: chromium.args,
         executablePath,
