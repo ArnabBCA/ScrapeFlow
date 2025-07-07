@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 const VERSION = "v137.0.1";
 const FILENAME = `chromium-${VERSION}-pack.x64.tar`;
 const DOWNLOAD_URL = `https://github.com/Sparticuz/chromium/releases/download/${VERSION}/${FILENAME}`;
-const OUTPUT_DIR = path.resolve(__dirname, "../.chromium");
+const OUTPUT_DIR = path.join(process.cwd(), ".vercel/output/static/chromium");
 const TAR_PATH = path.join(OUTPUT_DIR, FILENAME);
 
 async function downloadFile(url, dest) {

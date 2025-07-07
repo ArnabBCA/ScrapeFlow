@@ -6,7 +6,11 @@ import puppeteerCore from "puppeteer-core";
 import path from "path";
 
 export const maxDuration = 60;
-const executablePath = path.join(process.cwd(), ".chromium", "chromium");
+const executablePath = path.join(
+  process.cwd(),
+  ".vercel/output/static/chromium",
+  "chromium"
+);
 
 export async function LaunchBrowserExecutor(
   enviornment: ExecutionEnviornment<typeof LaunchBrowserTask>
