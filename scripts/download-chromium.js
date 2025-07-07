@@ -14,31 +14,52 @@ const DOWNLOAD_URL = `https://github.com/Sparticuz/chromium/releases/download/${
 const OUTPUT_DIR = path.resolve(__dirname, "../.chromium");
 const TAR_PATH = path.join(OUTPUT_DIR, FILENAME);
 
-async function downloadFile(url: string, dest: string): Promise<void> {
+async function downloadFile(url, dest) {
   const writer = fs.createWriteStream(dest);
   const response = await axios.get(url, { responseType: "stream" });
 
   return new Promise((resolve, reject) => {
     response.data.pipe(writer);
-    writer.on("finish", resolve);
-    writer.on("error", reject);
+    writer.on("finish", () => {
+      writer.close(() => {
+        console.log("✅ Download complete:", dest);
+        resolve();
+      });
+    });
+    writer.on("error", (err) => {
+      console.error("❌ Stream write error:", err.message);
+      reject(err);
+    });
   });
 }
 
-async function extractTar(filePath: string, dest: string): Promise<void> {
+async function extractTar(filePath, dest) {
+  console.log("📦 Extracting archive...");
   await tar.x({
     file: filePath,
     cwd: dest,
   });
+  console.log("✅ Extraction done.");
 }
 
 async function main() {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
+  // Optional: skip download if already exists
+  if (fs.existsSync(path.join(OUTPUT_DIR, "chrome"))) {
+    console.log("✅ Chromium already extracted, skipping download.");
+    return;
+  }
+
   console.log(`🔽 Downloading Chromium from: ${DOWNLOAD_URL}`);
   await downloadFile(DOWNLOAD_URL, TAR_PATH);
 
-  console.log("📦 Extracting archive...");
+  // Optional: log file size
+  if (fs.existsSync(TAR_PATH)) {
+    const { size } = fs.statSync(TAR_PATH);
+    console.log(`📁 Downloaded size: ${(size / 1024 / 1024).toFixed(2)} MB`);
+  }
+
   await extractTar(TAR_PATH, OUTPUT_DIR);
 
   fs.unlinkSync(TAR_PATH);
@@ -46,6 +67,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error("❌ Failed to download Chromium:", err.message);
+  console.error("❌ Failed to download or extract Chromium:", err);
   process.exit(1);
 });
