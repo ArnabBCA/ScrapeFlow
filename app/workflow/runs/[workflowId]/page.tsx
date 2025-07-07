@@ -4,17 +4,18 @@ import { Suspense } from "react";
 import Topbar from "../../_components/topbar/Topbar";
 import ExecutionsTable from "./_components/ExecutionsTable";
 
-function ExecutionsPage({
+async function ExecutionsPage({
   params,
 }: {
-  params: {
+  params: Promise<{
     workflowId: string;
-  };
+  }>;
 }) {
+  const { workflowId } = await params;
   return (
     <div className="h-full w-full overflow-auto">
       <Topbar
-        workflowId={params.workflowId}
+        workflowId={workflowId}
         hideButtons
         title="All runs"
         subtitle="List of all your workflows run"
@@ -26,7 +27,7 @@ function ExecutionsPage({
           </div>
         }
       >
-        <ExecutionsTableWrapper workflowId={params.workflowId} />
+        <ExecutionsTableWrapper workflowId={workflowId} />
       </Suspense>
     </div>
   );

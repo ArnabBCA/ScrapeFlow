@@ -6,9 +6,9 @@ import Editor from "../../_components/Editor";
 async function WorkflowEditorPage({
   params,
 }: {
-  params: { workflowId: string };
+  params: Promise<{ workflowId: string }>;
 }) {
-  const { workflowId } = params;
+  const { workflowId } = await params;
 
   const { userId } = await auth();
 

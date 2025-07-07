@@ -13,13 +13,13 @@ import StatsCard from "./_components/StatsCard";
 import ExecutionStatusChart from "./_components/ExecutionStatusChart";
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
-function Homepage({
+async function Homepage({
   searchParams,
 }: {
-  searchParams?: { month?: string; year?: string };
+  searchParams?: Promise<{ month?: string; year?: string }>;
 }) {
   const currDate = new Date();
-  const { month, year } = searchParams || {};
+  const { month, year } = (await searchParams) || {};
 
   const period: Period = {
     month: month ? parseInt(month) : currDate.getMonth(),
