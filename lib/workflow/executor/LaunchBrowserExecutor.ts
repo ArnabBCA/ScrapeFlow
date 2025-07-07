@@ -16,7 +16,7 @@ export async function LaunchBrowserExecutor(
     let browser;
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
       const executablePath = await chromium.executablePath(
-        "https://github.com/Sparticuz/chromium/releases/download/v137.0.1/chromium-v131.0.1-pack.tar"
+        "https://github.com/Sparticuz/chromium/releases/download/v137.0.1/chromium-v137.0.1-pack.x64.tar"
       );
       browser = await puppeteerCore.launch({
         args: chromium.args,
