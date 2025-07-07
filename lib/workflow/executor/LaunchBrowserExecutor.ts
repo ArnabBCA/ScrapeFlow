@@ -5,7 +5,6 @@ import chromium from "@sparticuz/chromium";
 import puppeteer, { type Browser } from "puppeteer";
 import puppeteerCore, { type Browser as BrowserCore } from "puppeteer-core";
 
-export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 export async function LaunchBrowserExecutor(
