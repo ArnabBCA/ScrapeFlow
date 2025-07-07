@@ -19,7 +19,7 @@ export async function LaunchBrowserExecutor(
       //const chromium = require("@sparticuz/chromium");
       const filePath = path.join(
         process.cwd(),
-        "node_modules/@sparticuz/chromium/",
+        "node_modules/@sparticuz/chromium/bin",
         "chromium-v137.0.1-pack.x64.tar"
       );
       if (!fs.existsSync(filePath)) {
