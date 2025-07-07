@@ -50,8 +50,6 @@ export async function setupUser() {
       },
     });
   }
-
-  redirect("/home");
 }
 
 /*export async function purchaseCredits(packId: PackId) {

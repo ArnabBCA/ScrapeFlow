@@ -1,3 +1,4 @@
+import { setupUser } from "@/actions/billings";
 import BreadcrumbHeader from "@/components/BreadcrumbHeader";
 import DesktopSidebar from "@/components/DesktopSidebar";
 import { ModeToggle } from "@/components/ThemeToggle";
@@ -5,7 +6,8 @@ import { Separator } from "@/components/ui/separator";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import React from "react";
 
-function layout({ children }: { children: React.ReactNode }) {
+async function layout({ children }: { children: React.ReactNode }) {
+  await setupUser();
   return (
     <div className="flex h-screen">
       <DesktopSidebar />
