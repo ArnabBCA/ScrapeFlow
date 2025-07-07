@@ -1,9 +1,9 @@
 import Logo from "@/components/Logo";
-import { ModeToggle } from "@/components/ThemeModeToggle";
+import { ModeToggle } from "@/components/ThemeToggle";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
 
-function layout({ children }: { children: React.ReactNode }) {
+function WorkflowLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col w-full h-screen">
       {children}
@@ -16,4 +16,4 @@ function layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default layout;
+export default WorkflowLayout;

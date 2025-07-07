@@ -1,4 +1,5 @@
 import { Loader2Icon } from "lucide-react";
+import React from "react";
 
 function loading() {
   return (

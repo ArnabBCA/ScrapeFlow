@@ -1,7 +1,6 @@
 "use client";
-
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { Fragment } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,29 +8,31 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "./ui/breadcrumb";
-import { MobileSidebar } from "./Sidebar";
+import MobileSidebar from "./MobileSidebar";
 
-const BreadcrumbHeader = () => {
-  const pathName = usePathname();
-  const paths = pathName === "/" ? [""] : pathName?.split("/");
+function BreadcrumbHeader() {
+  const pathname = usePathname();
+  const paths = pathname === "/" ? [""] : pathname?.split("/");
+
   return (
     <div className="flex items-center flex-start">
       <MobileSidebar />
       <Breadcrumb>
         <BreadcrumbList>
           {paths.map((path, index) => (
-            <React.Fragment key={path}>
+            <Fragment key={path}>
               <BreadcrumbItem>
                 <BreadcrumbLink className="capitalize" href={`/${path}`}>
                   {path === "" ? "Home" : path}
                 </BreadcrumbLink>
               </BreadcrumbItem>
-            </React.Fragment>
+              {index !== paths.length - 1 && <BreadcrumbSeparator />}
+            </Fragment>
           ))}
         </BreadcrumbList>
       </Breadcrumb>
     </div>
   );
-};
+}
 
 export default BreadcrumbHeader;

@@ -2,13 +2,12 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CreateFlowNode } from "@/lib/workflow/createFlowNode";
-import { TaskRegistry } from "@/lib/workflow/task/registry";
-import { AppNode } from "@/types/appNode";
-import { TaskType } from "@/types/task";
+import { AppNode, TaskType } from "@/lib/types";
+import { createFlowNode } from "@/lib/workflow/CreateFlowNode";
+import { TaskRegistry } from "@/lib/workflow/task/Registry";
 import { useReactFlow } from "@xyflow/react";
-import { CoinsIcon, CopyIcon, GripVerticalIcon, TrashIcon } from "lucide-react";
-import React from "react";
+import { Coins, CopyIcon, GripVerticalIcon, TrashIcon } from "lucide-react";
+import React, { Fragment } from "react";
 
 function NodeHeader({
   taskType,
@@ -18,50 +17,47 @@ function NodeHeader({
   nodeId: string;
 }) {
   const task = TaskRegistry[taskType];
+
   const { deleteElements, getNode, addNodes } = useReactFlow();
+
+  const copyNode = () => {
+    const node = getNode(nodeId) as AppNode;
+    const newX = node.position.x;
+    const newY = node.position.y + node.measured?.height! + 20;
+    const newNode = createFlowNode(node.data.type, { x: newX, y: newY });
+    addNodes([newNode]);
+  };
+
   return (
     <div className="flex items-center gap-2 p-2">
       <task.icon size={16} />
-      <div className="flex justify-between items-center w-full">
+      <div className="flex items-center justify-between w-full gap-1">
         <p className="text-xs font-bold uppercase text-muted-foreground">
           {task.label}
         </p>
         <div className="flex gap-1 items-center">
-          {task.isEntryPoint && <Badge>Entry point</Badge>}
-          <Badge className="gap-2 flex items-center text-xs">
-            <CoinsIcon size={16} />
-            TODO
+          {task.isEntryPoint && <Badge className="py-1">Entry Point</Badge>}
+          <Badge className="flex gap-2 items-center text-xs py-1">
+            <Coins size={16} />
+            {task.credits}
           </Badge>
           {!task.isEntryPoint && (
-            <>
+            <Fragment>
               <Button
                 variant={"ghost"}
                 size={"icon"}
-                onClick={() => {
+                onClick={() =>
                   deleteElements({
                     nodes: [{ id: nodeId }],
-                  });
-                }}
+                  })
+                }
               >
                 <TrashIcon size={12} />
               </Button>
-              <Button
-                variant={"ghost"}
-                size={"icon"}
-                onClick={() => {
-                  const node = getNode(nodeId) as AppNode;
-                  const newX = node.position.x;
-                  const newY = node.position.y + node.measured?.height! + 20;
-                  const newNode = CreateFlowNode(node.data.type, {
-                    x: newX,
-                    y: newY,
-                  });
-                  addNodes([newNode]);
-                }}
-              >
+              <Button variant={"ghost"} size={"icon"} onClick={copyNode}>
                 <CopyIcon size={12} />
               </Button>
-            </>
+            </Fragment>
           )}
           <Button
             variant={"ghost"}

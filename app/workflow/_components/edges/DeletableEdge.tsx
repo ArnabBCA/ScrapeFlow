@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import {
   BaseEdge,
@@ -8,13 +7,15 @@ import {
   getSmoothStepPath,
   useReactFlow,
 } from "@xyflow/react";
-import { XIcon } from "lucide-react";
+import React, { Fragment } from "react";
 
-export default function DeletableEdge(props: EdgeProps) {
+function DeletableEdge(props: EdgeProps) {
   const [edgePath, labelX, labelY] = getSmoothStepPath(props);
+
   const { setEdges } = useReactFlow();
+
   return (
-    <>
+    <Fragment>
       <BaseEdge
         path={edgePath}
         markerEnd={props.markerEnd}
@@ -24,22 +25,24 @@ export default function DeletableEdge(props: EdgeProps) {
         <div
           style={{
             position: "absolute",
-            transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+            transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
             pointerEvents: "all",
           }}
         >
           <Button
             variant={"outline"}
             size={"icon"}
-            className="w-6 h-6 border cursor-pointer rounded-full hover:shadow-lg flex items-center justify-center"
-            onClick={() => {
-              setEdges((edges) => edges.filter((edge) => edge.id !== props.id));
-            }}
+            className="w-5 h-5 border cursor-pointer rounded-full text-xs leading-none hover:shadow-lg"
+            onClick={() =>
+              setEdges((edges) => edges.filter((edge) => edge.id !== props.id))
+            }
           >
-            <XIcon className="p-[1px]"/>
+            x
           </Button>
         </div>
       </EdgeLabelRenderer>
-    </>
+    </Fragment>
   );
 }
+
+export default DeletableEdge;

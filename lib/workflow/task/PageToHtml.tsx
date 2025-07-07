@@ -1,30 +1,29 @@
-import { TaskParamType, TaskType } from "@/types/task";
-import { WorkflowTask } from "@/types/workflow";
-import { CodeIcon, GlobeIcon, LucideProps } from "lucide-react";
+import { TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
+import { CodeIcon, LucideProps } from "lucide-react";
 
 export const PageToHtmlTask = {
   type: TaskType.PAGE_TO_HTML,
-  label: "Get html from page",
+  label: "Get HTML from the page",
   icon: (props: LucideProps) => (
     <CodeIcon className="stroke-rose-400" {...props} />
   ),
   isEntryPoint: false,
-  credits: 2,
   inputs: [
     {
       name: "Web page",
-      type: TaskParamType.BROWSER_INSTANCE,
+      type: TaskParamType.BROWSE_INSTANCE,
       required: true,
     },
   ] as const,
   outputs: [
     {
-      name: "Html",
+      name: "HTML",
       type: TaskParamType.STRING,
     },
     {
       name: "Web page",
-      type: TaskParamType.BROWSER_INSTANCE,
+      type: TaskParamType.BROWSE_INSTANCE,
     },
   ] as const,
+  credits: 2,
 } satisfies WorkflowTask;

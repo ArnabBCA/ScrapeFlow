@@ -1,44 +1,34 @@
-import NodeCard from "@/app/workflow/_components/nodes/NodeCard";
-import NodeHeader from "@/app/workflow/_components/nodes/NodeHeader";
-import {
-  NodeInput,
-  NodeInputs,
-} from "@/app/workflow/_components/nodes/NodeInputs";
-import {
-  NodeOutput,
-  NodeOutputs,
-} from "@/app/workflow/_components/nodes/NodeOutputs";
-import { Badge } from "@/components/ui/badge";
-import { TaskRegistry } from "@/lib/workflow/task/registry";
-import { AppNodeData } from "@/types/appNode";
 import { NodeProps } from "@xyflow/react";
 import { memo } from "react";
+import NodeCard from "./NodeCard";
+import NodeHeader from "./NodeHeader";
+import { AppNodeData } from "@/lib/types";
+import { TaskRegistry } from "@/lib/workflow/task/Registry";
+import NodeInput from "./NodeInput";
+import NodeOutput from "./params/NodeOutput";
+import NodeIO from "./NodeIO";
+import { Badge } from "@/components/ui/badge";
 
-const DEV_MODE = process.env.NEXT_PUBLIC_DEV_MODE === "true";
+const DEV_MODE = process?.env?.NEXT_PUBLIC_DEV_MODE === "true";
+
 const NodeComponent = memo((props: NodeProps) => {
   const nodeData = props.data as AppNodeData;
   const task = TaskRegistry[nodeData.type];
+
   return (
     <NodeCard nodeId={props.id} isSelected={!!props.selected}>
-      {DEV_MODE && <Badge>DEV: {props.id}</Badge>}
+      {DEV_MODE && <Badge>DEV:{props.id}</Badge>}
       <NodeHeader taskType={nodeData.type} nodeId={props.id} />
-      <NodeInputs>
+      <NodeIO>
         {task.inputs.map((input) => (
-          <NodeInput key={input.name} input={input} nodeId={props.id} />
+          <NodeInput input={input} key={input.name} nodeId={props.id} />
         ))}
-      </NodeInputs>
-      <NodeOutputs>
-        {task.outputs.map((output, i) => {
-          const isLastElement = i === task.outputs.length - 1; //for styling bottom rounded corners
-          return (
-            <NodeOutput
-              key={output.name}
-              output={output}
-              isLastElement={isLastElement}
-            />
-          );
-        })}
-      </NodeOutputs>
+      </NodeIO>
+      <NodeIO>
+        {task.outputs.map((output) => (
+          <NodeOutput output={output} key={output.name} />
+        ))}
+      </NodeIO>
     </NodeCard>
   );
 });
