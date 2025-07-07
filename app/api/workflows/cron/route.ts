@@ -1,3 +1,4 @@
+"use server";
 import { getAppUrl } from "@/lib/helper";
 import prisma from "@/lib/prisma";
 import { WorkflowStatus } from "@/lib/types";
