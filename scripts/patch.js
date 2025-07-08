@@ -3,6 +3,7 @@ const path = require("path");
 
 const loc = path.join(process.cwd(), "bin");
 const patchDir = path.resolve(
+  process.cwd(),
   ".next/standalone/node_modules/@sparticuz/chromium/bin"
 );
 const sourceDir = path.resolve(loc);
