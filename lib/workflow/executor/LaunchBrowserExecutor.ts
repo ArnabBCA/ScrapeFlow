@@ -5,7 +5,7 @@ import puppeteerCore from "puppeteer-core";
 import path from "path";
 import fs from "fs";
 export const maxDuration = 60;
-import chromium from "@sparticuz/chromium";
+import chromium from "@sparticuz/chromium-min";
 import os from "os";
 import { main } from "@/scripts/download-chromium";
 
