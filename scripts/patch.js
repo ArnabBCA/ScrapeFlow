@@ -2,7 +2,9 @@ const fs = require("fs");
 const path = require("path");
 
 const loc = path.join(process.cwd(), "bin");
-const patchDir = path.resolve(".next/tmp/chromium");
+const patchDir = path.resolve(
+  ".next/standalone/node_modules/@sparticuz/chromium/bin"
+);
 const sourceDir = path.resolve(loc);
 
 // Ensure the destination directory exists

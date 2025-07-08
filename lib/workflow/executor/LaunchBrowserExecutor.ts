@@ -17,7 +17,10 @@ export async function LaunchBrowserExecutor(
 
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
       //const chromium = require("@sparticuz/chromium");
-      const filePath = path.join(process.cwd(), ".next/tmp/chromium");
+      const filePath = path.join(
+        process.cwd(),
+        ".next/standalone/node_modules"
+      );
       if (!fs.existsSync(filePath)) {
         const dirPath = path.dirname(filePath);
         let errorMessage = `❌ File not found at: ${filePath}`;
