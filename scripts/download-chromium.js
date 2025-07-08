@@ -1,12 +1,13 @@
 import fs from "fs";
 import path from "path";
+import os from "os";
 import axios from "axios";
 
 const VERSION = "v137.0.1";
 const FILENAME = `chromium-${VERSION}-pack.x64.tar`;
 const DOWNLOAD_URL = `https://github.com/Sparticuz/chromium/releases/download/${VERSION}/${FILENAME}`;
-const OUTPUT_DIR = path.resolve(".next/server");
-const TAR_PATH = path.join(OUTPUT_DIR, FILENAME);
+
+const TAR_PATH = path.join(os.tmpdir(), "bin", FILENAME);
 
 async function downloadFile(url, dest) {
   const writer = fs.createWriteStream(dest);
@@ -28,9 +29,12 @@ async function downloadFile(url, dest) {
 }
 
 async function main() {
-  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-
   console.log(`🔽 Downloading Chromium tarball from: ${DOWNLOAD_URL}`);
+
+  if (!fs.existsSync(path.dirname(TAR_PATH))) {
+    fs.mkdirSync(path.dirname(TAR_PATH), { recursive: true });
+    console.log(`📂 Created directory: ${path.dirname(TAR_PATH)}`);
+  }
   await downloadFile(DOWNLOAD_URL, TAR_PATH);
 
   if (fs.existsSync(TAR_PATH)) {

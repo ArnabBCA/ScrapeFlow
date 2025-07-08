@@ -3,9 +3,9 @@ import { LaunchBrowserTask } from "../task/LaunchBrowser";
 import puppeteer from "puppeteer";
 import puppeteerCore from "puppeteer-core";
 import path from "path";
-import fs from "fs";
+import os from "os";
 export const maxDuration = 60;
-import chromium from "@sparticuz/chromium";
+import chromium from "@sparticuz/chromium-min";
 
 export async function LaunchBrowserExecutor(
   enviornment: ExecutionEnviornment<typeof LaunchBrowserTask>
@@ -16,44 +16,13 @@ export async function LaunchBrowserExecutor(
     let browser;
 
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
-      //const chromium = require("@sparticuz/chromium");
-      const filePath = path.join(
-        process.cwd(),
-        ".next/standalone/node_modules"
+      const TAR_PATH = path.join(
+        os.tmpdir(),
+        "bin",
+        "chromium-v137.0.1-pack.x64.tar"
       );
-      if (!fs.existsSync(filePath)) {
-        const dirPath = path.dirname(filePath);
-        let errorMessage = `❌ File not found at: ${filePath}`;
-        if (fs.existsSync(dirPath)) {
-          const files = fs.readdirSync(dirPath);
-          if (files.length === 0) {
-            errorMessage += `\n📁 Directory "${dirPath}" is empty.`;
-          } else {
-            errorMessage += `\n📁 Files in directory "${dirPath}":\n - ${files.join(
-              "\n - "
-            )}`;
-          }
-        } else {
-          errorMessage += `\n❗ Directory does not exist: ${dirPath}`;
-          // 🔍 Check parent directory
-          const parentDir = path.dirname(dirPath);
-          if (fs.existsSync(parentDir)) {
-            const parentFiles = fs.readdirSync(parentDir);
-            if (parentFiles.length === 0) {
-              errorMessage += `\n📁 Parent directory "${parentDir}" is empty.`;
-            } else {
-              errorMessage += `\n📁 Files in parent directory "${parentDir}":\n - ${parentFiles.join(
-                "\n - "
-              )}`;
-            }
-          } else {
-            errorMessage += `\n❗ Parent directory also does not exist: ${parentDir}`;
-          }
-        }
-        enviornment.log.error(errorMessage);
-        return false;
-      }
-      const executablePath = await chromium.executablePath(filePath);
+
+      const executablePath = await chromium.executablePath(TAR_PATH);
       browser = await puppeteerCore.launch({
         args: chromium.args,
         executablePath,
