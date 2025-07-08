@@ -4,10 +4,13 @@ import puppeteer from "puppeteer";
 import puppeteerCore from "puppeteer-core";
 import path from "path";
 import fs from "fs";
-export const maxDuration = 60;
+
 import chromium from "@sparticuz/chromium-min";
 import os from "os";
 import { main } from "@/scripts/download-chromium";
+
+export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 export async function LaunchBrowserExecutor(
   enviornment: ExecutionEnviornment<typeof LaunchBrowserTask>
