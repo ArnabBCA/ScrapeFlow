@@ -18,11 +18,7 @@ export async function LaunchBrowserExecutor(
 
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
       //const chromium = require("@sparticuz/chromium");
-      const TAR_PATH = path.join(
-        "tmp",
-        "bin",
-        "chromium-v137.0.1-pack.x64.tar"
-      );
+      const TAR_PATH = path.join(os.tmpdir(), "chromium-v137.0.1-pack.x64.tar");
 
       if (!fs.existsSync(TAR_PATH)) {
         const dirPath = path.dirname(TAR_PATH);
