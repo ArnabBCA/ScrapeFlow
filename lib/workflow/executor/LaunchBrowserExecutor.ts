@@ -19,37 +19,11 @@ export async function LaunchBrowserExecutor(
 
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
       //const chromium = require("@sparticuz/chromium");
-      await main();
       const TAR_PATH = path.join(os.tmpdir(), "chromium-v137.0.1-pack.x64.tar");
       if (!fs.existsSync(TAR_PATH)) {
-        const dirPath = path.dirname(TAR_PATH);
-        let errorMessage = `❌ File not found at: ${TAR_PATH}`;
-        if (fs.existsSync(dirPath)) {
-          const files = fs.readdirSync(dirPath);
-          if (files.length === 0) {
-            errorMessage += `\n📁 Directory "${dirPath}" is empty.`;
-          } else {
-            errorMessage += `\n📁 Files in directory "${dirPath}":\n - ${files.join(
-              "\n - "
-            )}`;
-          }
-        } else {
-          errorMessage += `\n❗ Directory does not exist: ${dirPath}`;
-          // 🔍 Check parent directory
-          const parentDir = path.dirname(dirPath);
-          if (fs.existsSync(parentDir)) {
-            const parentFiles = fs.readdirSync(parentDir);
-            if (parentFiles.length === 0) {
-              errorMessage += `\n📁 Parent directory "${parentDir}" is empty.`;
-            } else {
-              errorMessage += `\n📁 Files in parent directory "${parentDir}":\n - ${parentFiles.join(
-                "\n - "
-              )}`;
-            }
-          } else {
-            errorMessage += `\n❗ Parent directory also does not exist: ${parentDir}`;
-          }
-        }
+        await main();
+      } else {
+        let errorMessage = `File not found at: ${TAR_PATH}`;
         enviornment.log.error(errorMessage);
         return false;
       }
