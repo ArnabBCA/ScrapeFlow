@@ -7,7 +7,7 @@ const VERSION = "v137.0.1";
 const FILENAME = `chromium-${VERSION}-pack.x64.tar`;
 const DOWNLOAD_URL = `https://github.com/Sparticuz/chromium/releases/download/${VERSION}/${FILENAME}`;
 
-const TAR_PATH = path.join(os.tmpdir(), "bin", FILENAME);
+const TAR_PATH = path.join("tmp", "bin", FILENAME);
 
 async function downloadFile(url, dest) {
   const writer = fs.createWriteStream(dest);

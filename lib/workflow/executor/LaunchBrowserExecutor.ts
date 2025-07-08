@@ -19,7 +19,7 @@ export async function LaunchBrowserExecutor(
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
       //const chromium = require("@sparticuz/chromium");
       const TAR_PATH = path.join(
-        os.tmpdir(),
+        "tmp",
         "bin",
         "chromium-v137.0.1-pack.x64.tar"
       );
