@@ -7,6 +7,7 @@ import fs from "fs";
 export const maxDuration = 60;
 import chromium from "@sparticuz/chromium";
 import os from "os";
+import { main } from "@/scripts/download-chromium";
 
 export async function LaunchBrowserExecutor(
   enviornment: ExecutionEnviornment<typeof LaunchBrowserTask>
@@ -18,8 +19,8 @@ export async function LaunchBrowserExecutor(
 
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
       //const chromium = require("@sparticuz/chromium");
+      await main();
       const TAR_PATH = path.join(os.tmpdir(), "chromium-v137.0.1-pack.x64.tar");
-
       if (!fs.existsSync(TAR_PATH)) {
         const dirPath = path.dirname(TAR_PATH);
         let errorMessage = `❌ File not found at: ${TAR_PATH}`;

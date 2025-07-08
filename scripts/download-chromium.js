@@ -28,7 +28,7 @@ async function downloadFile(url, dest) {
   });
 }
 
-async function main() {
+export async function main() {
   console.log(`🔽 Downloading Chromium tarball from: ${DOWNLOAD_URL}`);
 
   if (!fs.existsSync(path.dirname(TAR_PATH))) {
