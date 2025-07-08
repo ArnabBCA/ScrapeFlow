@@ -17,11 +17,7 @@ export async function LaunchBrowserExecutor(
 
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
       //const chromium = require("@sparticuz/chromium");
-      /*const filePath = path.join(
-        process.cwd(),
-        "node_modules/@sparticuz/chromium/bin",
-        "chromium-v137.0.1-pack.x64.tar"
-      );
+      const filePath = path.join(process.cwd(), ".next/tmp/chromium");
       if (!fs.existsSync(filePath)) {
         const dirPath = path.dirname(filePath);
         let errorMessage = `❌ File not found at: ${filePath}`;
@@ -53,8 +49,8 @@ export async function LaunchBrowserExecutor(
         }
         enviornment.log.error(errorMessage);
         return false;
-      }*/
-      const executablePath = await chromium.executablePath();
+      }
+      const executablePath = await chromium.executablePath(filePath);
       browser = await puppeteerCore.launch({
         args: chromium.args,
         executablePath,
