@@ -28,7 +28,7 @@ export async function LaunchBrowserExecutor(
       } else {
         log = log + `Chromium tarball found at ${TAR_PATH}.\n`;
       }
-      const executablePath = await chromium.executablePath(TAR_PATH);
+      const executablePath = await chromium.executablePath(os.tmpdir());
       browser = await puppeteerCore.launch({
         args: chromium.args,
         executablePath,
