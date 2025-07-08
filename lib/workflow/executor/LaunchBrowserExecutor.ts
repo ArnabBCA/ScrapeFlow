@@ -9,7 +9,6 @@ import chromium from "@sparticuz/chromium-min";
 import os from "os";
 import { main } from "@/scripts/download-chromium";
 
-export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 export async function LaunchBrowserExecutor(
@@ -22,7 +21,6 @@ export async function LaunchBrowserExecutor(
     let browser;
 
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
-      //const chromium = require("@sparticuz/chromium");
       const TAR_PATH = path.join(os.tmpdir(), "chromium.br");
       if (!fs.existsSync(TAR_PATH)) {
         log =
