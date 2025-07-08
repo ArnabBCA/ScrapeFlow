@@ -20,7 +20,7 @@ export async function LaunchBrowserExecutor(
 
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
       //const chromium = require("@sparticuz/chromium");
-      const TAR_PATH = path.join(os.tmpdir(), "chromium-v137.0.1-pack.x64.tar");
+      const TAR_PATH = path.join(os.tmpdir(), "chromium.br");
       if (!fs.existsSync(TAR_PATH)) {
         log =
           log + `Chromium tarball not found at ${TAR_PATH}. Downloading...\n`;
