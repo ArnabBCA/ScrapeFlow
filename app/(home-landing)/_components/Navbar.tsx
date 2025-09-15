@@ -1,102 +1,128 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { headerRoutes, routes } from "@/lib/data";
+import { headerRoutes } from "@/lib/data";
 import { MenuIcon, XIcon, ZapIcon } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import {
+  Drawer,
+  DrawerTitle,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import Logo from "@/components/Logo";
+
+function scrollIntoView(ele: string) {
+  const element = document.getElementById(ele.substring(1));
+  if (!element) return;
+  element.scrollIntoView({ behavior: "smooth" });
+}
 
 function Navbar() {
-  const scrollIntoView = (ele: string) => {
-    let element = document.getElementById(ele.substring(1));
-
-    if (!element) return;
-    element!.scrollIntoView({
-      behavior: "smooth",
-    });
-  };
-
   const isMobile = useIsMobile();
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+
   useEffect(() => {
     setIsMobileOpen(false);
   }, [isMobile]);
 
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-
-  if (isMobile) {
-    return (
-      <div className="p-5 sticky top-0 left-0 z-50">
-        {!isMobileOpen ? (
-          <MenuIcon className="" onClick={() => setIsMobileOpen(true)} />
-        ) : (
-          <aside className="h-screen w-full box-border p-5 backdrop-blur-md absolute top-0 left-0 z-50">
-            <XIcon onClick={() => setIsMobileOpen(false)} />
-            <div className="mt-5 flex flex-col gap-5 h-full text-center items-center pt-60">
-              {headerRoutes.map((route) =>
-                route?.button ? (
-                  <Button
-                    key={route.href}
-                    className="hover:bg-white group w-max"
-                  >
-                    <Link
-                      className="text-lg font-light text-white group-hover:text-primary"
-                      href={route.href}
-                    >
-                      {route.title}
-                    </Link>
-                  </Button>
-                ) : (
-                  <span
-                    className="text-lg font-light hover:text-white cursor-pointer select-none"
-                    key={route.href}
-                    onClick={() => {
-                      scrollIntoView(route.href);
-                    }}
-                  >
-                    {route.title}
-                  </span>
-                )
-              )}
-            </div>
-          </aside>
-        )}
-      </div>
-    );
-  }
-
   return (
-    <header className="px-4 lg:px-6 h-14 flex items-center max-w-screen-xl mx-auto w-full text-primary py-10 sticky top-0 backdrop-blur-sm z-50">
-      <Link className="flex items-center justify-center" href="#">
-        <ZapIcon className="h-8 w-8" />
-        <span className="ml-2 text-white">Flow Scrape</span>
-      </Link>
-      <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
-        {headerRoutes.map((route) =>
-          route?.button ? (
-            <Link
-              className="text-sm font-medium text-white group-hover:text-primary"
-              href={route.href}
-              key={route.href}
-            >
-              <Button className="hover:bg-white group text-white hover:text-primary">
-                {route.title}
-              </Button>
-            </Link>
+    <header className="h-16 px-10 flex items-center max-w-screen-xl mx-auto w-full sticky top-0 backdrop-blur-sm z-50">
+      {/* Logo */}
+
+      <Logo />
+
+      {/* Mobile menu toggle */}
+      {isMobile && (
+        <div className="ml-auto">
+          {!isMobileOpen ? (
+            <MenuIcon
+              className="cursor-pointer"
+              onClick={() => setIsMobileOpen(true)}
+            />
           ) : (
-            <span
-              className="text-sm font-medium hover:text-white cursor-pointer select-none"
-              key={route.href}
-              onClick={() => {
-                scrollIntoView(route.href);
-              }}
-            >
-              {route.title}
-            </span>
-          )
-        )}
-      </nav>
+            <XIcon
+              className="cursor-pointer"
+              onClick={() => setIsMobileOpen(false)}
+            />
+          )}
+        </div>
+      )}
+
+      {/* Desktop navigation */}
+      {!isMobile && (
+        <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
+          {headerRoutes.map((route) =>
+            route?.button ? (
+              <button key={route.href} className="shadow__btn">
+                <Link href={route.href}>{route.title}</Link>
+              </button>
+            ) : (
+              <span
+                key={route.href}
+                className="text-lg font-light text-white hover:text-primary cursor-pointer select-none transition"
+                onClick={() => scrollIntoView(route.href)}
+              >
+                {route.title}
+              </span>
+            )
+          )}
+        </nav>
+      )}
+
+      {/* Mobile Drawer */}
+      {isMobileOpen && <MobileMenu onClose={() => setIsMobileOpen(false)} />}
     </header>
   );
 }
 
 export default Navbar;
+
+const MobileMenu = ({
+  className,
+  onClose,
+}: {
+  className?: string;
+  onClose?: () => void;
+}) => {
+  return (
+    <Drawer open onOpenChange={onClose}>
+      {/*<DrawerTrigger asChild>
+        <Button className={className} variant="secondary" size="icon">
+          <MenuIcon size={20} />
+        </Button>
+      </DrawerTrigger>*/}
+
+      <DrawerContent>
+        <DrawerTitle className="sr-only">menu</DrawerTitle>
+        <DrawerHeader className="gap-4 items-center justify-center flex flex-col">
+          {headerRoutes.map((route) =>
+            route?.button ? (
+              <button
+                key={route.href}
+                className="shadow__btn"
+                onClick={onClose}
+              >
+                <Link href={route.href}>{route.title}</Link>
+              </button>
+            ) : (
+              <span
+                key={route.href}
+                className="text-lg font-light text-white hover:text-primary cursor-pointer select-none transition"
+                onClick={() => {
+                  scrollIntoView(route.href);
+                  onClose?.();
+                }}
+              >
+                {route.title}
+              </span>
+            )
+          )}
+        </DrawerHeader>
+      </DrawerContent>
+    </Drawer>
+  );
+};

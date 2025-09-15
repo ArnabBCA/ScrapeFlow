@@ -91,7 +91,7 @@ export default function HomeLandingPage() {
         </div>
       </SectionWrapper>
 
-      <SectionWrapper className="text-center">
+      {/*<SectionWrapper className="text-center">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-[#22C55E] to-green-600">
           Start Scraping Today
         </h2>
@@ -109,7 +109,7 @@ export default function HomeLandingPage() {
         <p className="text-xs text-gray-500 dark:text-gray-400">
           No credit card required. Start with 200 free credits.
         </p>
-      </SectionWrapper>
+      </SectionWrapper>*/}
     </div>
   );
 }
