@@ -17,14 +17,9 @@ export default function HomeLandingPage() {
   return (
     <div className="flex flex-col items-center min-h-screen selection:bg-primary selection:text-white">
       <Navbar />
-      <SectionWrapper className="h-screen text-center -mt-[80px] !p-0">
+      {/*<SectionWrapper className="h-screen text-center -mt-[80px] !p-0">
         <Lamp>
           <div className="flex flex-col items-center gap-4">
-            {/*<TypewriterEffectSmooth
-              words={typeWriterWords}
-              className="mb-0"
-              cursorClassName="bg-primary"
-            />*/}
             <Typewriter
               options={{
                 strings: [
@@ -71,7 +66,7 @@ export default function HomeLandingPage() {
             </p>
           </div>
         </Lamp>
-      </SectionWrapper>
+      </SectionWrapper>*/}
       <SectionWrapper
         id="howItWorks"
         primaryTitle="How"

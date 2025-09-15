@@ -32,24 +32,45 @@ export const Grid = ({
   pattern?: number[][];
   size?: number;
 }) => {
-  const p = pattern ?? [
-    [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-    [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-    [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-    [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-    [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
+  /*const [p, setP] = React.useState<number[][]>([]);
+
+  React.useEffect(() => {
+    if (!pattern) {
+      const data = [
+        [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
+        [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
+        [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
+        [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
+        [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
+      ];
+      console.log(data);
+      setP(data);
+    } else {
+      setP(pattern);
+    }
+  }, [pattern]);*/
+
+  const p = [
+    [9, 2],
+    [8, 6],
+    [10, 5],
+    [10, 4],
+    [7, 6],
   ];
+
   return (
-    <div className="pointer-events-none absolute left-1/2 top-0  -ml-20 -mt-2 h-full w-full [mask-image:linear-gradient(white,transparent)]">
-      <div className="absolute inset-0 bg-gradient-to-r  [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] dark:from-primary/30 from-primary/30 to-prifrom-primary/30 dark:to-prifrom-primary/30 opacity-100">
-        <GridPattern
-          width={size ?? 20}
-          height={size ?? 20}
-          x="-12"
-          y="4"
-          squares={p}
-          className="absolute inset-0 h-full w-full  mix-blend-overlay dark:fill-primary/10 dark:stroke-primary/10 stroke-primary/10 fill-primary"
-        />
+    <div className="pointer-events-none absolute left-1/2 top-0 -ml-20 -mt-2 h-full w-full [mask-image:linear-gradient(white,transparent)]">
+      <div className="absolute inset-0 bg-gradient-to-r [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] dark:from-primary/30 from-primary/30 to-prifrom-primary/30 dark:to-prifrom-primary/30 opacity-100">
+        {p.length > 0 && (
+          <GridPattern
+            width={size ?? 20}
+            height={size ?? 20}
+            x="-12"
+            y="4"
+            squares={p}
+            className="absolute inset-0 h-full w-full mix-blend-overlay dark:fill-primary/10 dark:stroke-primary/10 stroke-primary/10 fill-primary"
+          />
+        )}
       </div>
     </div>
   );
