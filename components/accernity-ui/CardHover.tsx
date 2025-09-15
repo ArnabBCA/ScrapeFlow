@@ -30,7 +30,7 @@ export const HoverEffect = ({
       {items.map((item, idx) => (
         <Link
           href={item?.link}
-          key={item?.link}
+          key={idx}
           className="relative group  block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -53,20 +53,19 @@ export const HoverEffect = ({
             )}
           </AnimatePresence>
           <Card className="group">
-            <CardTitle className="flex flex-col gap-2">
-              <span className="text-xl group-hover:text-primary">
+            <CardTitle className="flex flex-col gap-2 m-0">
+              <span className="text-3xl group-hover:text-primary">
                 {item.title}
               </span>
-              <span className="font-thin">{item.credits} credits</span>
+              <span className="text-xl font-medium text-muted-foreground">
+                {item.credits} credits
+              </span>
             </CardTitle>
             <CardDescription className="flex flex-col gap-2">
               <span className="text-3xl font-semibold group-hover:text-primary text-white">
                 ${item.price}
               </span>
-              <span className="">{item.description}</span>
-              <div className="text-white bg-primary px-10 py-2 rounded-md text-center">
-                Buy Now
-              </div>
+              <Button className="w-full text-white">Buy Now</Button>
             </CardDescription>
           </Card>
         </Link>
