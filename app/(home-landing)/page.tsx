@@ -10,20 +10,20 @@ import { FeaturesGradient } from "./_components/FeaturesGradient";
 import { HoverEffect } from "@/components/accernity-ui/CardHover";
 import Link from "next/link";
 import Navbar from "./_components/Navbar";
-import { Lamp } from "./_components/Lamp";
 import Typewriter from "typewriter-effect";
+import { LampContainer } from "@/app/(home-landing)/_components/LampContainer";
 
 export default function HomeLandingPage() {
   return (
     <div className="flex flex-col items-center min-h-screen selection:bg-primary selection:text-white">
       <Navbar />
-      {/*<SectionWrapper className="h-screen text-center -mt-[80px] !p-0">
-        <Lamp>
+      <SectionWrapper className="h-screen text-center -mt-[80px] !p-0">
+        <LampContainer>
           <div className="flex flex-col items-center gap-4">
             <Typewriter
               options={{
                 strings: [
-                  '<span>Build Powerful <span style="color: #27ae60;">Web Scraping</span> Workflows.</span>',
+                  '<span class="text-gradient2">Build Powerful Web Scraping Workflows.</span>',
                 ],
                 autoStart: true,
                 loop: true,
@@ -35,12 +35,11 @@ export default function HomeLandingPage() {
                   "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center",
               }}
             />
-            <p className="text-muted-foreground text-sm md:text-xl">
+            <p className="text-gradient2 text-sm md:text-xl">
               Create, automate, and scale your web scraping projects with ease.
               No coding required.
             </p>
           </div>
-
           <div className="relative rounded-full p-[1px] h-8 inline-flex overflow-hidden text-[14px]/6 text-gray-200 transition my-10">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#FFFF00_0%,transparent_50%,#FFFF00_100%)]"></span>
             <a
@@ -65,8 +64,8 @@ export default function HomeLandingPage() {
               New users get 200 credits for free upon first login
             </p>
           </div>
-        </Lamp>
-      </SectionWrapper>*/}
+        </LampContainer>
+      </SectionWrapper>
       <SectionWrapper
         id="howItWorks"
         primaryTitle="How"

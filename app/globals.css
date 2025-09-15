@@ -163,3 +163,11 @@
   -webkit-text-fill-color: transparent;
 }
 
+.text-gradient2 {
+ color: #808080; 
+ background-image: linear-gradient(0deg, #808080 , #A0A0A0 , #C0C0C0 , #E0E0E0 , #FFFFFF 50%); 
+ background-clip: text; 
+ -webkit-background-clip: text; 
+ -webkit-text-fill-color: transparent; 
+}
+
