@@ -55,11 +55,12 @@ export default function HomeLandingPage() {
           </div>
           <div className="flex flex-col items-center gap-4">
             <Link href={"/sign-in"}>
-              <Button className="w-40 h-10 rounded-xl text-sm text-white shadow-[0_0_10px_4px] shadow-green-500/50">
+              <button className="shadow__btn flex items-center gap-2">
                 Get Started
                 <ChevronRightIcon className="h-4 w-4" />
-              </Button>
+              </button>
             </Link>
+
             <p className="text-sm text-primary">
               New users get 200 credits for free upon first login
             </p>

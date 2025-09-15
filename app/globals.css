@@ -133,7 +133,7 @@
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: #fff;
-  border-radius: 7px;
+  border-radius: 20px;
   transition: 0.5s;
   transition-property: box-shadow;
 }
