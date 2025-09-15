@@ -86,7 +86,7 @@ export default function HomeLandingPage() {
         primaryTitle="Simple"
         secondaryTitle="Pricing"
       >
-        <div className="flex gap-5 w-full mt-10">
+        <div className="flex gap-5 w-full">
           <HoverEffect items={[...pricingPlans]} />
         </div>
       </SectionWrapper>
@@ -130,13 +130,13 @@ function SectionWrapper({
   return (
     <section
       className={cn(
-        "flex flex-col items-center justify-center py-10 box-border w-full max-w-screen-xl scroll-mt-[80px] md:p-10",
+        "flex flex-col items-center justify-center p-4 box-border w-full max-w-screen-xl scroll-mt-[80px] sm:p-6 md:p-10",
         className
       )}
       id={id}
     >
       {primaryTitle && (
-        <h1 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-2xl md:text-3xl lg:text-5xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
+        <h1 className="text-gradient text-3xl sm:text-4xl md:text-5xl font-sans font-bold h-12 sm:h-14 md:h-16">
           {primaryTitle} {secondaryTitle}
         </h1>
       )}
