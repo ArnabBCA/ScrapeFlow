@@ -8,6 +8,7 @@ import { useReactFlow } from "@xyflow/react";
 import BrowserInstance from "./params/BrowserInstance";
 import SelectParam from "./params/SelectParam";
 import CredentialsParam from "./params/CredentialsParam";
+import RunTaskParam from "./params/RunTaskParam";
 
 function NodeParamField({
   param,
@@ -40,9 +41,12 @@ function NodeParamField({
     param.name === "Run Task (Default: True)"
   ) {
     return (
-      <div className="w-full">
-        <p className="text-xs text-muted-foreground">{param.name}</p>
-      </div>
+      <RunTaskParam
+        param={param}
+        value={value}
+        updateNodeParamValue={updateNodeParamValue}
+        disabled={disabled}
+      />
     );
   }
 
