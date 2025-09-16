@@ -35,6 +35,17 @@ function NodeParamField({
 
   const value = node?.data?.inputs?.[param.name];
 
+  if (
+    param.type === TaskParamType.STRING &&
+    param.name === "Run Task (Default: True)"
+  ) {
+    return (
+      <div className="w-full">
+        <p className="text-xs text-muted-foreground">{param.name}</p>
+      </div>
+    );
+  }
+
   switch (param.type) {
     case TaskParamType.STRING:
       return (

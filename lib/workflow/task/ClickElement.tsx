@@ -1,4 +1,4 @@
-import { TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
+import { RUN_TASK_INPUT, TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
 import { LucideProps, MousePointerClick } from "lucide-react";
 
 export const ClickElementTask = {
@@ -9,6 +9,7 @@ export const ClickElementTask = {
   ),
   isEntryPoint: false,
   inputs: [
+    RUN_TASK_INPUT,
     {
       name: "Web page",
       type: TaskParamType.BROWSE_INSTANCE,

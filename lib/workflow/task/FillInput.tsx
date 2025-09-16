@@ -1,4 +1,4 @@
-import { TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
+import { RUN_TASK_INPUT, TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
 import { CodeIcon, Edit3Icon, LucideProps } from "lucide-react";
 
 export const FillInputTask = {
@@ -9,6 +9,7 @@ export const FillInputTask = {
   ),
   isEntryPoint: false,
   inputs: [
+    RUN_TASK_INPUT,
     {
       name: "Web page",
       type: TaskParamType.BROWSE_INSTANCE,

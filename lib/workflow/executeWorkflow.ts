@@ -168,6 +168,15 @@ async function executeWorkflowPhase(
     },
   });
 
+  const runTask =
+    enviornment.phases[node.id].inputs["Run Task (Default: True)"];
+    
+  if (runTask === "false") {
+    logCollector.info("Skipping the task as Run Task is set to false");
+    await finalizePhase(phase.id, true, {}, 0, logCollector);
+    return { success: true, creditsConsumed: 0 };
+  }
+
   const creditsRequired = TaskRegistry[node.data.type].credits;
 
   let success = await decrementCredits(userId, creditsRequired, logCollector);

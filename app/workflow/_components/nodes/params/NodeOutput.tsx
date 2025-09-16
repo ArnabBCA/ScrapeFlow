@@ -14,7 +14,9 @@ function NodeOutput({ output }: { output: TaskParam }) {
         position={Position.Right}
         className={cn(
           "!bg-muted-foreground !border-r-2 !border-background !-mr-2 !w-4 !h-4",
-          ColorForHandle[output.type]
+          output.name === "Matched"
+            ? "!bg-green-400"
+            : ColorForHandle[output.type]
         )}
       />
     </div>

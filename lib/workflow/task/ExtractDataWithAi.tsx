@@ -1,4 +1,4 @@
-import { TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
+import { RUN_TASK_INPUT, TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
 import { BrainIcon, LucideProps } from "lucide-react";
 
 export const ExtractDataWithAiTask = {
@@ -10,6 +10,7 @@ export const ExtractDataWithAiTask = {
   isEntryPoint: false,
   credits: 3,
   inputs: [
+    RUN_TASK_INPUT,
     {
       name: "Content",
       type: TaskParamType.STRING,

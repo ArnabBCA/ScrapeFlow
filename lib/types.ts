@@ -21,6 +21,7 @@ export enum TaskType {
   ADD_PROPERTY_TO_JSON = "ADD_PROPERTY_TO_JSON",
   NAVIGATE_URL = "NAVIGATE_URL",
   SCROLL_TO_ELEMENT = "SCROLL_TO_ELEMENT",
+  COMPARE_DATA = "COMPARE_DATA",
 }
 export enum TaskParamType {
   STRING = "STRING",
@@ -146,3 +147,9 @@ export type WorkflowExecutionType = Record<
     failed: number;
   }
 >;
+
+export const RUN_TASK_INPUT = {
+  name: "Run Task (Default: True)",
+  type: TaskParamType.STRING,
+  required: false,
+} as const;

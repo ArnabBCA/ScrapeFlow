@@ -1,30 +1,31 @@
 import { RUN_TASK_INPUT, TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
-import { FileJson2Icon, LucideProps } from "lucide-react";
+import { EqualIcon, LucideProps } from "lucide-react";
 
-export const ReadPropertyFromJsonTask = {
-  type: TaskType.READ_PROPERTY_FROM_JSON,
-  label: "Read property from JSON",
+export const CompareDataTask = {
+  type: TaskType.COMPARE_DATA,
+  label: "Compare two data",
   icon: (props: LucideProps) => (
-    <FileJson2Icon className="stroke-orange-400" {...props} />
+    <EqualIcon className="stroke-rose-400" {...props} />
   ),
   isEntryPoint: false,
   inputs: [
     RUN_TASK_INPUT,
     {
-      name: "JSON",
+      name: "Data1",
       type: TaskParamType.STRING,
       required: true,
       variant: "textarea",
     },
     {
-      name: "Property name",
+      name: "Data2",
       type: TaskParamType.STRING,
       required: true,
+      variant: "textarea",
     },
   ] as const,
   outputs: [
     {
-      name: "Property Value",
+      name: "Matched",
       type: TaskParamType.STRING,
     },
   ] as const,

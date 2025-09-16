@@ -19,16 +19,18 @@ const NodeComponent = memo((props: NodeProps) => {
     <NodeCard nodeId={props.id} isSelected={!!props.selected}>
       {DEV_MODE && <Badge>DEV:{props.id}</Badge>}
       <NodeHeader taskType={nodeData.type} nodeId={props.id} />
-      <NodeIO>
-        {task.inputs.map((input) => (
-          <NodeInput input={input} key={input.name} nodeId={props.id} />
-        ))}
-      </NodeIO>
-      <NodeIO>
-        {task.outputs.map((output) => (
-          <NodeOutput output={output} key={output.name} />
-        ))}
-      </NodeIO>
+      <div className="flex flex-col gap-2">
+        <NodeIO>
+          {task.inputs.map((input) => (
+            <NodeInput input={input} key={input.name} nodeId={props.id} />
+          ))}
+        </NodeIO>
+        <NodeIO>
+          {task.outputs.map((output) => (
+            <NodeOutput output={output} key={output.name} />
+          ))}
+        </NodeIO>
+      </div>
     </NodeCard>
   );
 });

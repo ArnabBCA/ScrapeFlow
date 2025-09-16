@@ -1,4 +1,4 @@
-import { TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
+import { RUN_TASK_INPUT, TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
 import { DatabaseIcon, LucideProps } from "lucide-react";
 
 export const AddPropertyToJsonTask = {
@@ -9,6 +9,7 @@ export const AddPropertyToJsonTask = {
   ),
   isEntryPoint: false,
   inputs: [
+    RUN_TASK_INPUT,
     {
       name: "JSON",
       type: TaskParamType.STRING,

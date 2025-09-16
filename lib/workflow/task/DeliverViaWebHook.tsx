@@ -1,4 +1,4 @@
-import { TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
+import { RUN_TASK_INPUT, TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
 import { LucideProps, SendIcon } from "lucide-react";
 
 export const DeliverViaWebHookTask = {
@@ -9,6 +9,7 @@ export const DeliverViaWebHookTask = {
   ),
   isEntryPoint: false,
   inputs: [
+    RUN_TASK_INPUT,
     {
       name: "Body",
       type: TaskParamType.STRING,

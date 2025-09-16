@@ -1,4 +1,4 @@
-import { TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
+import { RUN_TASK_INPUT, TaskParamType, TaskType, WorkflowTask } from "@/lib/types";
 import { LucideProps, MouseIcon } from "lucide-react";
 
 export const ScrollToElementTask = {
@@ -9,6 +9,7 @@ export const ScrollToElementTask = {
   ),
   isEntryPoint: false,
   inputs: [
+    RUN_TASK_INPUT,
     {
       name: "Web page",
       type: TaskParamType.BROWSE_INSTANCE,
