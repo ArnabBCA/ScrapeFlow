@@ -31,10 +31,12 @@ function DuplicateWorkflowDialog({
   workflowId,
   name,
   description,
+  isActionButton = false,
 }: {
   workflowId: string;
   name: string;
   description: string;
+  isActionButton?: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -76,15 +78,21 @@ function DuplicateWorkflowDialog({
       }}
     >
       <DialogTrigger asChild>
-        <Button
-          variant={"ghost"}
-          size={"icon"}
-          className={cn(
-            "ml-2 transition-opacity duration-200 opacity-0 group-hover/card:opacity-100"
-          )}
-        >
-          <CopyIcon className="w-4 h-4 text-muted-foreground cursor-pointer" />
-        </Button>
+        {isActionButton ? (
+          <span className="flex items-center gap-2">
+            <CopyIcon className="w-4 h-4 cursor-pointer" />
+            Duplicate
+          </span>
+        ) : (
+          <Button
+            variant={"outline"}
+            size={"sm"}
+            className={cn("flex items-center gap-2")}
+          >
+            <CopyIcon className="w-4 h-4 cursor-pointer" />
+            Duplicate
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="px-0">
         <CustomDialogHeader icon={Layers2Icon} title="Duplicate workflow" />

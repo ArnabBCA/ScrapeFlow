@@ -1,6 +1,6 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { WorkflowExecutionStatus, WorkflowStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -14,9 +14,10 @@ import {
   MoveRightIcon,
   PlayIcon,
   ShuffleIcon,
+  TrashIcon,
 } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import WorkflowActions from "./WorkflowActions";
 import RunButton from "./RunButton";
 import SchedulerDialog from "./SchedulerDialog";
@@ -28,6 +29,7 @@ import ExecutionStatusIndicator, {
 import { format, formatDistanceToNow } from "date-fns";
 import { formatInTimeZone } from "date-fns-tz";
 import DuplicateWorkflowDialog from "./DuplicateWorkflowDialog";
+import DeleteWorkflowDialog from "./DeleteWorkflowDialog";
 
 const statusColor = {
   [WorkflowStatus.DRAFT]: "bg-yellow-400 text-yellow-600",
@@ -36,9 +38,10 @@ const statusColor = {
 
 function WorkflowCard({ workflow }: { workflow: Workflow }) {
   const isDraft = workflow.status === WorkflowStatus.DRAFT;
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   return (
     <Card className="border border-separate shadow-sm rounded-lg overflow-hidden hover:shadow-md dark:shadow-primary/30 group/card">
-      <CardContent className="p-4 flex items-center justify-between h-[100px]">
+      <CardContent className="p-4 flex items-center justify-between">
         <div className="flex items-center justify-end space-x-3">
           <div
             className={cn(
@@ -64,38 +67,48 @@ function WorkflowCard({ workflow }: { workflow: Workflow }) {
                   Draft
                 </span>
               )}
-              <DuplicateWorkflowDialog
-                workflowId={workflow.id}
-                name={workflow.name}
-                description={workflow.description || ""}
-              />
             </h3>
-            <SchedulerSection
-              isDraft={isDraft}
-              creditsCost={workflow.creditsCost}
-              workflowId={workflow.id}
-              workflowCron={workflow.cron}
-            />
+            <div className="hidden sm:block">
+              <SchedulerSection
+                isDraft={isDraft}
+                creditsCost={workflow.creditsCost}
+                workflowId={workflow.id}
+                workflowCron={workflow.cron}
+              />
+            </div>
           </div>
         </div>
         <div className="flex items-center space-x-2">
-          {!isDraft && <RunButton workflowId={workflow.id} />}
-          <Link
-            href={`/workflow/editor/${workflow.id}`}
-            className={cn(
-              buttonVariants({ variant: "outline", size: "sm" }),
-              "flex items-center p-4"
-            )}
-          >
-            <ShuffleIcon size={16} />
-            Edit
-          </Link>
+          <div className="items-center space-x-2 hidden sm:flex">
+            {!isDraft && <RunButton workflowId={workflow.id} />}
+            <Link
+              href={`/workflow/editor/${workflow.id}`}
+              className={cn(
+                buttonVariants({ variant: "outline", size: "sm" }),
+                "flex items-center p-4"
+              )}
+            >
+              <ShuffleIcon size={16} />
+              Edit
+            </Link>
+          </div>
           <WorkflowActions
+            isDraft={isDraft}
             workflowName={workflow.name}
+            workflowDescription={workflow.description || ""}
             workflowId={workflow.id}
           />
         </div>
       </CardContent>
+      <div className="sm:hidden p-4 pt-0">
+        <SchedulerSection
+          isDraft={isDraft}
+          creditsCost={workflow.creditsCost}
+          workflowId={workflow.id}
+          workflowCron={workflow.cron}
+        />
+      </div>
+
       <LastRunDetails workflow={workflow} />
     </Card>
   );
@@ -155,11 +168,11 @@ function LastRunDetails({ workflow }: { workflow: Workflow }) {
 
   return (
     <div className="bg-primary/5 px-4 py-1 flex justify-between items-center text-muted-foreground">
-      <div className="flex items-center text-sm gap-2">
+      <div className="flex items-start text-sm gap-2 flex-col md:flex-row md:items-center">
         {lastRunAt && (
           <Link
             href={`/workflow/runs/${workflow.id}/${lastRunId}`}
-            className="flex items-center text-sm gap-2 group"
+            className="flex items-center gap-2 group"
           >
             <span>Last run:</span>
             <ExecutionStatusIndicator
@@ -177,11 +190,11 @@ function LastRunDetails({ workflow }: { workflow: Workflow }) {
         )}
         {!lastRunAt && <p>No runs yet</p>}
         {nextRunAt && (
-          <div className="flex items-center text-sm gap-2">
+          <div className="flex items-center gap-2">
             <ClockIcon size={12} />
-            <span>Next run at:</span>
+            <span>Next run:</span>
             <span>{nextSchedule}</span>
-            <span className="text-sm">({nextScheduleUtc} UTC)</span>
+            <span>({nextScheduleUtc} UTC)</span>
           </div>
         )}
       </div>

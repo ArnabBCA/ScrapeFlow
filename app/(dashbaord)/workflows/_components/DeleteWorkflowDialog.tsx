@@ -48,17 +48,18 @@ function DeleteWorkflowDialog({
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            If you delete this workflow, you will not be able to recover it.
-            <div className="flex flex-col py-4 gap-2">
-              <p>
-                If you are sure, enter <b>{workflowName}</b> to confirm.
-              </p>
-              <Input
-                value={confirmText}
-                onChange={(e) => setConfirmText(e.target.value)}
-              />
-            </div>
+          <AlertDialogDescription className="flex flex-col">
+            <span>
+              If you delete this workflow, you will not be able to recover it.
+            </span>
+            <span>
+              If you are sure, enter <b>{workflowName}</b> to confirm.
+            </span>
+            <Input
+              className="mt-4"
+              value={confirmText}
+              onChange={(e) => setConfirmText(e.target.value)}
+            />
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
