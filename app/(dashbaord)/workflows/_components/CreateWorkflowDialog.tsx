@@ -38,8 +38,12 @@ function CreateWorkflowDialog({ triggeredText }: { triggeredText?: string }) {
     onSuccess: () => {
       toast.success("Workflow created", { id: "create-workflow" });
     },
-    onError: (error) => {
-      toast.error("Failed to create workflow", { id: "create-workflow" });
+    onError: (e) => {
+      if (e.message === "NEXT_REDIRECT") {
+        toast.success("Workflow created", { id: "create-workflow" });
+      } else {
+        toast.error("Failed to create workflow", { id: "create-workflow" });
+      }
     },
   });
 

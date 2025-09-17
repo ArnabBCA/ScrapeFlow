@@ -16,7 +16,9 @@ function ExecuteButton({ workflowId }: { workflowId: string }) {
       toast.success("Execution Started", { id: "flow-execution" });
     },
     onError: (e) => {
-      if (e.message !== "NEXT_REDIRECT") {
+      if (e.message === "NEXT_REDIRECT") {
+        toast.success("Execution Started", { id: "flow-execution" });
+      } else {
         toast.error("Something went wrong", { id: "flow-execution" });
       }
     },
