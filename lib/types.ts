@@ -151,5 +151,5 @@ export type WorkflowExecutionType = Record<
 export const RUN_TASK_INPUT = {
   name: "Run Task (Default: True)",
   type: TaskParamType.STRING,
-  required: false,
+  required: true,
 } as const;

@@ -163,3 +163,18 @@ function getIncomers(node: AppNode, nodes: AppNode[], edges: Edge[]) {
 
   return nodes.filter((n) => incomersIds.has(n.id));
 }
+
+export function getOutgoers(node: AppNode, nodes: AppNode[], edges: Edge[]) {
+  if (!node.id) {
+    return [];
+  }
+
+  const outgoersIds = new Set();
+  edges.forEach((edge) => {
+    if (edge.source === node.id) {
+      outgoersIds.add(edge.target);
+    }
+  });
+
+  return nodes.filter((n) => outgoersIds.has(n.id));
+}

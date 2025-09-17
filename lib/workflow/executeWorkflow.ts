@@ -16,8 +16,12 @@ import { ExecutorRegistry } from "./executor/Registry";
 import { Browser, Page } from "puppeteer-core";
 import { Edge } from "@xyflow/react";
 import { createLogCollector } from "../log";
+import { getOutgoers } from "./executionPlan";
+
+const skipNodeIds = new Set<string>();
 
 export async function executeWorkflow(executionId: string, nextRunAt?: Date) {
+  skipNodeIds.clear();
   const execution = await prisma.workflowExecution.findUnique({
     where: {
       id: executionId,
@@ -30,6 +34,7 @@ export async function executeWorkflow(executionId: string, nextRunAt?: Date) {
   }
 
   const edges = JSON.parse(execution.definition).edges as Edge[];
+  const nodes = JSON.parse(execution.definition).nodes as AppNode[];
 
   const enviornment = { phases: {} };
   await initializeWorkflowExecution(
@@ -47,6 +52,7 @@ export async function executeWorkflow(executionId: string, nextRunAt?: Date) {
       phase,
       enviornment,
       edges,
+      nodes,
       execution.userId
     );
     creditsConsumed += phaseExecution.creditsConsumed;
@@ -148,6 +154,7 @@ async function executeWorkflowPhase(
   phase: ExecutionPhase,
   enviornment: Enviornment,
   edges: Edge[],
+  allNodes: AppNode[],
   userId: string
 ) {
   const startedAt = new Date();
@@ -155,6 +162,17 @@ async function executeWorkflowPhase(
 
   const node = JSON.parse(phase.node) as AppNode;
   setupEnviornmentForPhase(node, enviornment, edges);
+
+  const currentInputs = { ...enviornment.phases[node.id].inputs };
+  const runTask = currentInputs["Run Task (Default: True)"];
+
+  if (skipNodeIds.has(node.id) || runTask === "false") {
+    const childNodes = getOutgoers(node, allNodes, edges);
+    skipNodeIds.add(node.id);
+    childNodes.forEach((n) => skipNodeIds.add(n.id));
+    currentInputs["Run Task (Default: True)"] = "false";
+  }
+
   // Update the status
 
   await prisma.executionPhase.update({
@@ -164,14 +182,12 @@ async function executeWorkflowPhase(
     data: {
       status: ExecutionPhaseStatus.RUNNING,
       startedAt,
-      inputs: JSON.stringify(enviornment.phases[node.id].inputs),
+      inputs: JSON.stringify(currentInputs),
     },
   });
 
-  const runTask =
-    enviornment.phases[node.id].inputs["Run Task (Default: True)"];
-    
-  if (runTask === "false") {
+  // Handle skip logic
+  if (skipNodeIds.has(node.id)) {
     logCollector.info("Skipping the task as Run Task is set to false");
     await finalizePhase(phase.id, true, {}, 0, logCollector);
     return { success: true, creditsConsumed: 0 };

@@ -14,7 +14,6 @@ export const maxDuration = 60;
 export async function LaunchBrowserExecutor(
   enviornment: ExecutionEnviornment<typeof LaunchBrowserTask>
 ): Promise<boolean> {
-  let log = "";
   try {
     const websiteUrl = enviornment.getInput("Website Url");
 
@@ -23,11 +22,12 @@ export async function LaunchBrowserExecutor(
     if (process.env.NEXT_PUBLIC_VERCEL_ENVIRONMENT === "production") {
       const TAR_PATH = path.join(os.tmpdir(), "chromium.br");
       if (!fs.existsSync(TAR_PATH)) {
-        log =
-          log + `Chromium tarball not found at ${TAR_PATH}. Downloading...\n`;
+        enviornment.log.info(
+          `Chromium tarball not found at ${TAR_PATH}. Downloading...`
+        );
         await main();
       } else {
-        log = log + `Chromium tarball found at ${TAR_PATH}.\n`;
+        enviornment.log.info(`Chromium tarball found at ${TAR_PATH}`);
       }
       const executablePath = await chromium.executablePath(os.tmpdir());
       browser = await puppeteerCore.launch({
@@ -42,7 +42,7 @@ export async function LaunchBrowserExecutor(
       });
     }
 
-    enviornment.log.info(log + "Browser started successfully");
+    enviornment.log.info("Browser started successfully");
     enviornment.setBrowser(browser as any);
     const page = await browser.newPage();
     await page.goto(websiteUrl, { timeout: 60000 });
@@ -50,7 +50,7 @@ export async function LaunchBrowserExecutor(
     enviornment.log.info(`Opened page at: ${websiteUrl}`);
     return true;
   } catch (error: any) {
-    enviornment.log.error(log + error.message);
+    enviornment.log.error(error.message);
     return false;
   }
 }

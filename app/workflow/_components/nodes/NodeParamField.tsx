@@ -23,11 +23,11 @@ function NodeParamField({
   const node = getNode(nodeId) as AppNode;
 
   const updateNodeParamValue = useCallback(
-    (newValue: string) => {
+    (newValue: string | undefined) => {
       updateNodeData(nodeId, {
         inputs: {
           ...node?.data?.inputs,
-          [param.name]: newValue,
+          [param.name]: newValue === "undefined" ? undefined : newValue,
         },
       });
     },
