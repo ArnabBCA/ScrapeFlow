@@ -114,6 +114,16 @@ function FlowEditor({ workflow }: { workflow: Workflow }) {
       if (input?.type !== output?.type) {
         console.log("Invalid connection");
         return false;
+      } else {
+        if (
+          //Only allow Run Task (Default: True) to connect to Matched, and block everything else.
+          (input?.name === "Run Task (Default: True)" &&
+            output?.name !== "Matched") ||
+          (input?.name !== "Run Task (Default: True)" &&
+            output?.name === "Matched")
+        ) {
+          return false;
+        }
       }
 
       // Avoid cyclic connections :: DOCS_GRAPH
