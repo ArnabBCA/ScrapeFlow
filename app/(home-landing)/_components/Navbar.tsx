@@ -57,8 +57,8 @@ function Navbar() {
         <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
           {headerRoutes.map((route) =>
             route?.button ? (
-              <Link href={route.href}>
-                <button key={route.href} className="shadow__btn">
+              <Link key={route.href} href={route.href}>
+                <button className="shadow__btn">
                   {route.title}
                 </button>
               </Link>
@@ -103,7 +103,7 @@ const MobileMenu = ({
         <DrawerHeader className="gap-4 items-center justify-center flex flex-col">
           {headerRoutes.map((route) =>
             route?.button ? (
-              <Link href={route.href}>
+              <Link href={route.href} key={route.href}>
                 <button className="shadow__btn" onClick={onClose}>
                   {route.title}
                 </button>
