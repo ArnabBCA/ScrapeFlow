@@ -31,15 +31,19 @@ function CreateCredentialDialog({ triggeredText }: { triggeredText?: string }) {
 
   const form = useForm<createCredentialSchemaType>({
     resolver: zodResolver(createCredentialSchema),
-    defaultValues: {},
+    defaultValues: {
+      name: "", // 👈 important (no undefined)
+      value: "", // 👈 important
+    },
   });
+
   const { mutate, isPending } = useMutation({
     mutationFn: createCredential,
     onSuccess: () => {
       toast.success("Credential created", { id: "create-credential" });
       setOpen(false);
     },
-    onError: (error: any) => {
+    onError: () => {
       toast.error("Failed to create credential", { id: "create-credential" });
     },
   });
@@ -80,10 +84,10 @@ function CreateCredentialDialog({ triggeredText }: { triggeredText?: string }) {
                       Name <p className="text-xs text-primary">(required)</p>
                     </FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input {...field} value={field.value ?? ""} />
                     </FormControl>
                     <FormDescription>
-                      Enter an unique and descriptive name for credential <br />
+                      Enter a unique and descriptive name for credential <br />
                       This name will be used to identify credential
                     </FormDescription>
                     <FormMessage />
@@ -96,17 +100,21 @@ function CreateCredentialDialog({ triggeredText }: { triggeredText?: string }) {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="flex gap-1 items-center">
-                      Description{" "}
+                      Value{" "}
                       <p className="text-xs text-muted-foreground">
-                        (optinoal)
+                        (optional)
                       </p>
                     </FormLabel>
                     <FormControl>
-                      <Textarea {...field} className="resize-none" />
+                      <Textarea
+                        {...field}
+                        value={field.value ?? ""}
+                        className="resize-none"
+                      />
                     </FormControl>
                     <FormDescription>
-                      Enter the value assosiated with this credential <br />
-                      This value wiil be securely encrypted and stored
+                      Enter the value associated with this credential <br />
+                      This value will be securely encrypted and stored
                     </FormDescription>
                     <FormMessage />
                   </FormItem>

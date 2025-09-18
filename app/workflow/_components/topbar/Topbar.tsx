@@ -9,6 +9,7 @@ import ExecuteButton from "./ExecuteButton";
 import NavigationTabs from "./NavigationTabs";
 import PublishButton from "./PublishButton";
 import UnPublishButton from "./UnPublishButton";
+import Link from "next/link";
 
 interface Props {
   title: string;
@@ -30,10 +31,12 @@ function Topbar({
   return (
     <header className="flex p-2 border-b-2 border-separate justify-between w-full h-[60px] sticky top-0 bg-background z-10">
       <div className="flex gap-1 flex-1">
-        <TooltipWrapper content="Black">
-          <Button variant={"ghost"} size={"icon"} onClick={() => router.back()}>
-            <ChevronLeftIcon size={30} />
-          </Button>
+        <TooltipWrapper content="Workflows">
+          <Link href="/workflows">
+            <Button variant={"ghost"} size={"icon"}>
+              <ChevronLeftIcon size={30} />
+            </Button>
+          </Link>
         </TooltipWrapper>
         <div className="">
           <p className="font-bold text-ellipsis truncate">{title}</p>

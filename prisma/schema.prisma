@@ -7,13 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/*
-datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
-}
-*/
-
 model Workflow {
   id            String              @id @default(uuid())
   userId        String
