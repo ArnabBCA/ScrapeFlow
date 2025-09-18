@@ -12,6 +12,7 @@ import { AddPropertyToJsonExecutor } from "./AddPropertyToJsonExecutor ";
 import { NavigateUrlExecutor } from "./NavigateUrlExecutor";
 import { ScrollToElementExecutor } from "./ScrollToElementExecutor";
 import { CompareDataExecutor } from "./CompareDataExecutor";
+import { SendEmailExecutor } from "./SendEmailExecutor";
 
 type ExecutorFunction<T extends WorkflowTask> = (
   enviornment: ExecutionEnviornment<T>
@@ -35,4 +36,5 @@ export const ExecutorRegistry: RegistryType = {
   NAVIGATE_URL: NavigateUrlExecutor,
   SCROLL_TO_ELEMENT: ScrollToElementExecutor,
   COMPARE_DATA: CompareDataExecutor,
+  SEND_EMAIL: SendEmailExecutor,
 };

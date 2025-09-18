@@ -25,6 +25,7 @@ function TaskMenu() {
           "timings",
           "results",
           "storage",
+          "alerts",
         ]}
       >
         <AccordionItem value="interactions">
@@ -65,6 +66,14 @@ function TaskMenu() {
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuButton taskType={TaskType.WAIT_FOR_ELEMENT} />
           </AccordionContent>
+          <AccordionItem value="alerts">
+            <AccordionTrigger className="font-bold">
+              Send Email
+            </AccordionTrigger>
+            <AccordionContent className="flex flex-col gap-1">
+              <TaskMenuButton taskType={TaskType.SEND_EMAIL} />
+            </AccordionContent>
+          </AccordionItem>
           <AccordionItem value="results">
             <AccordionTrigger className="font-bold">
               Result delivery

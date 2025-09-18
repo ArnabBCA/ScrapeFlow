@@ -12,6 +12,7 @@ import { AddPropertyToJsonTask } from "./AddPropertyToJson";
 import { NavigateUrlTask } from "./NavigateUrl";
 import { ScrollToElementTask } from "./ScrollToElement";
 import { CompareDataTask } from "./CompareData";
+import { SendEmailTask } from "./SendEmail";
 
 type Registry = {
   [key in TaskType]: WorkflowTask & { type: key };
@@ -31,4 +32,5 @@ export const TaskRegistry: Registry = {
   NAVIGATE_URL: NavigateUrlTask,
   SCROLL_TO_ELEMENT: ScrollToElementTask,
   COMPARE_DATA: CompareDataTask,
+  SEND_EMAIL: SendEmailTask,
 };

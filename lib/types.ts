@@ -22,6 +22,7 @@ export enum TaskType {
   NAVIGATE_URL = "NAVIGATE_URL",
   SCROLL_TO_ELEMENT = "SCROLL_TO_ELEMENT",
   COMPARE_DATA = "COMPARE_DATA",
+  SEND_EMAIL = "SEND_EMAIL",
 }
 export enum TaskParamType {
   STRING = "STRING",
