@@ -30,10 +30,10 @@ function StringParam({
       <InputComponent
         id={id}
         className="text-xs"
-        value={internalValue}
+        value={internalValue || ""}
         placeholder="Enter value here"
         onBlur={(e: React.ChangeEvent<HTMLInputElement>) =>
-          updateNodeParamValue && updateNodeParamValue(e.target.value)
+          updateNodeParamValue && updateNodeParamValue(e.target.value.trim())
         }
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setInternalValue(e.target.value)
