@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import {
   Html,
   Body,
@@ -35,12 +35,12 @@ export default function SendEmailTemplate({
                 New Email from ScrapeFlow
               </Heading>
               <Text>{message}</Text>
-              {/*<Hr />*/}
-              {/*<Text>Workflow ID: {workflowId}</Text>*/}
+              <Hr />
+              <Text>Workflow ID: {workflowId}</Text>
             </Section>
           </Container>
         </Body>
       </Tailwind>
     </Html>
   );
-}
+}*/

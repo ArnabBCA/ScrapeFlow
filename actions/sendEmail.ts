@@ -1,8 +1,8 @@
 "use server";
 
-import SendEmailTemplate from "@/components/SendEmailTemplate";
+/*import SendEmailTemplate from "@/components/SendEmailTemplate";
 import { createElement } from "react";
-import { Resend } from "resend";
+import { Resend } from "resend";*/
 
 export const sendEmail = async (
   targetEmail: string,
@@ -11,7 +11,7 @@ export const sendEmail = async (
   apiKey: string
 ) => {
   try {
-    const resend = new Resend(apiKey);
+    /*const resend = new Resend(apiKey);
     const data = await resend.emails.send({
       from: `${targetEmail} <onboarding@resend.dev>`,
       to: targetEmail,
@@ -25,6 +25,10 @@ export const sendEmail = async (
     return {
       status: "success",
       data: `Email Sent Successfully, id: ${data?.id}`,
+    };*/
+    return {
+      status: "success",
+      data: "Email sending is disabled in the this version",
     };
   } catch (error: any) {
     console.log("Error sending email:", error);
