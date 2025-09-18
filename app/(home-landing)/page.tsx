@@ -20,21 +20,24 @@ export default function HomeLandingPage() {
       <SectionWrapper className="h-screen text-center -mt-[80px] !p-0">
         <LampContainer>
           <div className="flex flex-col items-center gap-4">
-            <Typewriter
-              options={{
-                strings: [
-                  '<span class="text-gradient2">Build Powerful Web Scraping Workflows.</span>',
-                ],
-                autoStart: true,
-                loop: true,
-                skipAddStyles: true,
+            <div className="min-h-[36px] md:min-h-[44px] lg:min-h-[57.6px] h-auto">
+              <Typewriter
+                options={{
+                  strings: [
+                    '<span class="text-gradient2">Build Powerful Web Scraping Workflows.</span>',
+                  ],
+                  autoStart: true,
+                  loop: true,
+                  skipAddStyles: true,
 
-                cursorClassName:
-                  "text-primary text-2xl md:text-3xl lg:text-4xl xl:text-5xl blinking-cursor",
-                wrapperClassName:
-                  "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center",
-              }}
-            />
+                  cursorClassName:
+                    "text-primary text-2xl md:text-3xl lg:text-4xl xl:text-5xl blinking-cursor",
+                  wrapperClassName:
+                    "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center",
+                }}
+              />
+            </div>
+
             <p className="text-gradient2 text-sm md:text-xl">
               Create, automate, and scale your web scraping projects with ease.
               No coding required.

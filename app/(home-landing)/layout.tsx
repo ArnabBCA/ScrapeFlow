@@ -1,3 +1,3 @@
 export default function layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return <div className="overflow-hidden">{children}</div>;
 }
