@@ -4,7 +4,18 @@ import { useId } from "react";
 
 export function FeaturesGradient() {
   return (
-    <div className="py-10 lg:py-10">
+    <div className="py-10 lg:py-10 flex items-center flex-col">
+      <div className="w-full max-w-xl aspect-video mb-10">
+        <iframe
+          className="w-full h-full rounded-lg"
+          src="https://www.youtube.com/embed/NDwRA4vEPpc?si=mAUe4ujoMwU58bNQ"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-2 max-w-7xl mx-auto">
         {howItWorks.map((feature) => (
           <div
