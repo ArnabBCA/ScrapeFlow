@@ -1,16 +1,8 @@
-# Flow Scrape
 
-This is a highly customizable web scraper built with Next.js 14, PostgreSQL, Prisma, and React Flow. It enables users to create, manage, and execute complex web scraping workflows with a visual, no-code/low-code interface. The scraper comes with advanced features such as AI-based data extraction
 
-## Screenshots
+[Watch Demo Video Here](https://www.youtube.com/watch?v=NDwRA4vEPpc) <br/>
 
-### ScreenShot 1
-
-![Screenshot 1](https://github.com/user-attachments/assets/07105297-8b67-4419-a92f-ef5ff5a038c6)
-
-### ScreenShot 2
-
-![Screenshot 2](https://github.com/user-attachments/assets/ecf9c093-d03e-4ee0-bd71-48f1d0b38538)
+[Live Url](https://scrapeflow.vercel.app/)
 
 ## Technologies Used
 
@@ -18,55 +10,14 @@ This is a highly customizable web scraper built with Next.js 14, PostgreSQL, Pri
 - React Flow
 - PostgreSQL with Neon DB
 - Puppeteer
+- Gemini AI
 - Prisma
-- [Live Url](https://flowscrape.kartikpawar.dev/)
 
-## Features
+![Screenshot 1](https://github.com/user-attachments/assets/398dc7a1-0a0c-4be5-8c2a-27f15c1e1f36)
 
-- Launch Browser
+![Screenshot 2](https://github.com/user-attachments/assets/08fd431a-7146-4917-98fd-42d13a183373)
 
-  - Initiates a browser instance to begin the web scraping process, enabling interaction with web pages.
+![Screenshot 3](https://github.com/user-attachments/assets/6001dc37-c93c-4042-851e-310e001d9d34)
 
-- Page to HTML
 
-  - Extracts the complete HTML content of the current page for detailed analysis and processing.
-
-- Extract Text from Element
-
-  - Retrieves the text content from a specified HTML element using a given CSS selector.
-
-- Fill Input
-
-  - Automatically fills a specified input field with a desired value, emulating user input.
-
-- Click Element
-
-  - Simulates a click action on a specified HTML element, triggering any associated events or navigation.
-
-- Scroll to Element
-
-  - Scrolls to a specified element on the page, emulating user behavior for dynamic content loading.
-
-- Wait for Element
-
-  - Pauses the workflow until a specified element becomes visible or hidden on the page.
-
-- Extract Data via AI
-
-  - Uses AI to parse HTML content and extract structured data based on a custom prompt, returning JSON output.
-
-- Read JSON
-
-  - Reads and retrieves a specific key or property from a JSON object for use in workflows.
-
-- Build JSON
-
-  - Adds or updates data within an existing JSON object or creates a new one with the specified properties.
-
-- Deliver via Webhook
-
-  - Sends the scraped data to an external API endpoint through a POST request for further processing or storage.
-
-- Navigate to URL
-
-  - Navigates to a specified URL, loading the desired web page for scraping or interaction.
+![Screenshot 4](https://github.com/user-attachments/assets/40d6e764-86e5-4299-9227-758b9cc6d875)
