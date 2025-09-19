@@ -12,6 +12,7 @@ import Link from "next/link";
 import Navbar from "./_components/Navbar";
 import Typewriter from "typewriter-effect";
 import { LampContainer } from "@/app/(home-landing)/_components/LampContainer";
+import Image from "next/image";
 
 export default function HomeLandingPage() {
   return (
@@ -83,6 +84,21 @@ export default function HomeLandingPage() {
         secondaryTitle="Features"
       >
         <FeaturesSection />
+      </SectionWrapper>
+      <SectionWrapper
+        id="projectArchitecture"
+        primaryTitle="Project"
+        secondaryTitle="Architecture"
+      >
+        <div className="flex gap-5 w-full py-10">
+          <Image
+            src="/ScrapeFlowDesignDark.svg"
+            alt="Project Architecture"
+            width={1200}
+            height={800}
+            className="rounded-lg shadow-lg"
+          />
+        </div>
       </SectionWrapper>
       <SectionWrapper
         id="pricing"

@@ -98,6 +98,12 @@ export const headerRoutes = [
     href: "#scrapingFeatures",
     className: "",
   },
+  ,
+  {
+    title: "Project Architecture",
+    href: "#projectArchitecture",
+    className: "",
+  },
   {
     title: "Pricing",
     href: "#pricing",
