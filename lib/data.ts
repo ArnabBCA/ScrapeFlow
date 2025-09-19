@@ -98,7 +98,6 @@ export const headerRoutes = [
     href: "#scrapingFeatures",
     className: "",
   },
-  ,
   {
     title: "Project Architecture",
     href: "#projectArchitecture",
