@@ -19,11 +19,22 @@ const NodeComponent = memo((props: NodeProps) => {
       {DEV_MODE && <Badge>DEV:{props.id}</Badge>}
       <NodeHeader taskType={nodeData.type} nodeId={props.id} />
       <div className="flex flex-col divide-y gap-2">
-        {task.inputs.map((input) => (
-          <NodeInput input={input} key={input.name} nodeId={props.id} />
+        {task.inputs.map((input, i) => (
+          <NodeInput
+            input={input}
+            key={input.name}
+            nodeId={props.id}
+            isLastInput={
+              task.outputs.length === 0 && i === task.inputs.length - 1
+            }
+          />
         ))}
-        {task.outputs.map((output) => (
-          <NodeOutput output={output} key={output.name} />
+        {task.outputs.map((output, i) => (
+          <NodeOutput
+            output={output}
+            key={output.name}
+            isLastOutput={i === task.outputs.length - 1}
+          />
         ))}
       </div>
     </NodeCard>
