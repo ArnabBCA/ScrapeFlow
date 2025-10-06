@@ -4,9 +4,20 @@ import { Handle, Position } from "@xyflow/react";
 import React from "react";
 import { ColorForHandle } from "../common";
 
-function NodeOutput({ output }: { output: TaskParam }) {
+function NodeOutput({
+  output,
+  isLastOutput,
+}: {
+  output: TaskParam;
+  isLastOutput: boolean;
+}) {
   return (
-    <div className="flex justify-end relative p-3 bg-secondary">
+    <div
+      className={cn(
+        "flex justify-end relative p-3 bg-secondary",
+        isLastOutput && "rounded-b-md"
+      )}
+    >
       <p className="text-xs text-muted-foreground">{output.name}</p>
       <Handle
         id={output.name}
