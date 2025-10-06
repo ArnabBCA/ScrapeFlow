@@ -52,7 +52,7 @@ function TaskMenu() {
         </AccordionItem>
         <AccordionItem value="storage">
           <AccordionTrigger className="font-bold">
-            Data Storage
+            Data Transformation
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuButton taskType={TaskType.READ_PROPERTY_FROM_JSON} />
