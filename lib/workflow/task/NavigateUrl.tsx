@@ -10,11 +10,6 @@ export const NavigateUrlTask = {
   isEntryPoint: false,
   inputs: [
     RUN_TASK_INPUT,
-    /*{
-      name: "Web page",
-      type: TaskParamType.BROWSE_INSTANCE,
-      required: true,
-    },*/
     {
       name: "Url",
       type: TaskParamType.STRING,
